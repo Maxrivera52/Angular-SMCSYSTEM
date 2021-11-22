@@ -29,7 +29,16 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/app/views/src/js/jquery-3.1.1.min.js",
+              "src/app/views/src/js/bootstrap.min.js",
+              "src/app/views/src/js/material.min.js",
+              "src/app/views/src/js/ripples.min.js",
+              "src/app/views/src/js/sweetalert2.min.js",
+              "src/app/views/src/js/jquery.mCustomScrollbar.concat.min.js",
+              "src/app/views/src/js/main.js"
+
+            ]
           },
           "configurations": {
             "production": {
