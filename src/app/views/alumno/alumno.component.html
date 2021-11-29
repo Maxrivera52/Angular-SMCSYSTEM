@@ -6,15 +6,15 @@
 
 <div class="container">
   <h2 style="color: blue; font-weight: bold" class="text-center">
-    Listado de ALumnos
+    Listado de Alumnos
   </h2>
   <div class="col text-center">
     <button
-      class="btn btn-outline-success"
+      class="btn btn-raised btn-success"
       type="button"
       [routerLink]="['/alumno/form']"
     >
-      <i class="fas fa-plus-circle"></i> Registrar
+      <i class="zmdi zmdi-plus-circle"></i> Registrar
     </button>
   </div>
   <br />
@@ -37,7 +37,7 @@
           <td class="text-center" scope="row">
             {{ alumno.idalumno }}
           </td>
-          <td class="text-center">{{ alumno.nombres }}</td>
+          <td class="text-center">{{ alumno.nombre }}</td>
           <td class="text-center">{{ alumno.apellido }}</td>
           <td class="text-center">{{ alumno.dni }}</td>
           <td class="text-center">{{ alumno.telefono }}</td>
@@ -46,18 +46,18 @@
             <button
               style="margin: 10px"
               type="button"
-              class="btn btn-outline-warning"
+              class="btn btn-raised btn-warning"
               [routerLink]="['/alumno/form', alumno.idalumno]"
             >
-              <i class="fas fa-edit"></i>
+              <i class="zmdi zmdi-edit"></i>
             </button>
             <button
               style="margin: 10px"
               type="button"
-              class="btn btn-outline-danger"
+              class="btn btn-raised btn-danger"
               (click)="delete(alumno)"
             >
-              <i class="fas fa-trash"></i>
+              <i class="zmdi zmdi-delete"></i>
             </button>
           </td>
         </tr>

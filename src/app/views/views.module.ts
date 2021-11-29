@@ -6,7 +6,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 
 import { FormAlumnoComponent } from './alumno/form-alumno.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Router,RouterModule } from '@angular/router';
 import { UsuariosComponent } from './usuarios/usuarios.component';
@@ -28,6 +28,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule
 
   ]
