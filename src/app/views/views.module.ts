@@ -7,7 +7,10 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { FormsModule } from '@angular/forms';
 import { Router,RouterModule } from '@angular/router';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
   
@@ -20,7 +23,11 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class ViewsModule { }

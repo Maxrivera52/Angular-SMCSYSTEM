@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         if(logres!=null){
           //this.router.navigate(["/home"]);
           document.cookie = `username=${res.nombre}`;
-          window.location.href = "home";
+          window.location.href = "/home";
           //this.router.navigate()
         }else{
           swal({

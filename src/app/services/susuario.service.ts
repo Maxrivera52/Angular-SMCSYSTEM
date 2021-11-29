@@ -18,12 +18,18 @@ export class SUsuarioService {
   }
 
   getAll():Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(this.url);
+    const params = `/listar`;
+    return this.http.get<Usuario[]>(this.url+params);
   }
 
   getById(id:number):Observable<Usuario>{
     const params = `/find/${id}`
     return this.http.get<Usuario>(this.url+params);
+  }
+
+  save(usu:Usuario):Observable<Usuario>{
+    const params = `/save`;
+    return this.http.post<Usuario>(this.url+params,usu);
   }
 
   

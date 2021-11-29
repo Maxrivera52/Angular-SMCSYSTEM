@@ -9,6 +9,8 @@ import { ServicesModule } from './services/services.module';
 import { ViewsModule } from './views/views.module';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { FormsModule } from '@angular/forms';
     ViewsModule,
     ServicesModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
