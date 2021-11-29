@@ -10,7 +10,7 @@
         <div class="full-box dashboard-sideBar-UserInfo">
             <figure class="full-box">
                 <img src="./assets/img/avatar.jpg" alt="UserIcon">
-                <figcaption class="text-center text-titles">User Name</figcaption>
+                <figcaption class="text-center text-titles">{{username}}</figcaption>
             </figure>
             <ul class="full-box list-unstyled text-center">
                 <li>
@@ -28,10 +28,11 @@
         <!-- SideBar Menu -->
         <ul class="list-unstyled full-box dashboard-sideBar-Menu">
             <li>
-                <a href="home.html">
+                <a [routerLink]="['/home']">
                     <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
                 </a>
             </li>
+            <!--
             <li>
                 <a  class="btn-sideBar-SubMenu">
                     <i class="zmdi zmdi-case zmdi-hc-fw"></i> Administration <i
@@ -52,27 +53,34 @@
                     </li>
                 </ul>
             </li>
+        -->
             <li>
                 <a  class="btn-sideBar-SubMenu">
-                    <i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Users <i
+                    <i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Usuarios <i
                         class="zmdi zmdi-caret-down pull-right"></i>
                 </a>
                 <ul class="list-unstyled full-box">
                     <li>
-                        <a href="admin.html"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Admin</a>
+                        <a href="admin.html"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Administradores</a>
                     </li>
                     <li>
-                        <a href="teacher.html"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Teacher</a>
+                        <a href="teacher.html"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Maestros</a>
                     </li>
                     <li>
                         <a routerLink="/alumno"><i class="zmdi zmdi-face zmdi-hc-fw"></i> Student</a>
                     </li>
                     <li>
                         <a href="representative.html"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i>
-                            Representative</a>
+                            Padres
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['Usuarios']" ><i class="zmdi zmdi-account zmdi-hc-fw"></i> Usuarios
+                        </a>
                     </li>
                 </ul>
             </li>
+            <!--
             <li>
                 <a  class="btn-sideBar-SubMenu">
                     <i class="zmdi zmdi-card zmdi-hc-fw"></i> Payments <i class="zmdi zmdi-caret-down pull-right"></i>
@@ -97,6 +105,7 @@
                     </li>
                 </ul>
             </li>
+        -->
         </ul>
     </div>
 </section>

@@ -1,8 +1,16 @@
 body{
-    /*background-image: url(./src/assets/img/anim2.jpg);*/
+    background-image: url(../../../assets/img/anim2.jpg);
     /*background: 50% 50% no-repeat;*/
 	background-size: cover;
 }
 #UserEmail , #UserPass{
-    color: #FFF
+    color: #FFF;
+}
+
+#logintitle{
+    font-size: 25px;
+}
+
+.hrlogin{
+    margin: 10px 25px;
 }

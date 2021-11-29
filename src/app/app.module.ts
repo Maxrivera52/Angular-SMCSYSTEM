@@ -7,12 +7,15 @@ import { AppComponent } from './app.component';
 import { ModelsModule } from './models/models.module';
 import { ServicesModule } from './services/services.module';
 import { ViewsModule } from './views/views.module';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlumnoComponent } from './views/alumno/alumno.component';
 
+import { FormsModule } from '@angular/forms';
+
 import {HttpClientModule} from '@angular/common/http';
 
-import {FormsModule} from '@angular/forms';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -38,6 +41,8 @@ const routers:Routes=[
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
+    FormsModule,
     ModelsModule,
     ViewsModule,
     ServicesModule,
@@ -51,7 +56,8 @@ const routers:Routes=[
     MatFormFieldModule,
     MatSnackBarModule,
     MatSelectModule,
-    RouterModule.forRoot(routers)
+    RouterModule.forRoot(routers),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
