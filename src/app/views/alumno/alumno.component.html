@@ -1,0 +1,66 @@
+<div class="container">
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div class="container">
+  <h2 style="color: blue; font-weight: bold" class="text-center">
+    Listado de ALumnos
+  </h2>
+  <div class="col text-center">
+    <button
+      class="btn btn-outline-success"
+      type="button"
+      [routerLink]="['/alumno/form']"
+    >
+      <i class="fas fa-plus-circle"></i> Registrar
+    </button>
+  </div>
+  <br />
+  <div class="table-responsive">
+    <table class="table table-bordered table-condensed table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th class="text-center">CODIGO</th>
+          <th class="text-center">NOMBRE</th>
+          <th class="text-center">APELLIDO</th>
+          <th class="text-center">DNI</th>
+          <th class="text-center">TELEFONO</th>
+          <th class="text-center">ESTADO</th>
+          <th class="text-center">ACCIONES</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let alumno of alumnocl">
+          <td class="text-center" scope="row">
+            {{ alumno.idalumno }}
+          </td>
+          <td class="text-center">{{ alumno.nombres }}</td>
+          <td class="text-center">{{ alumno.apellido }}</td>
+          <td class="text-center">{{ alumno.dni }}</td>
+          <td class="text-center">{{ alumno.telefono }}</td>
+          <td class="text-center">{{ alumno.estado }}</td>
+          <td class="d-flex">
+            <button
+              style="margin: 10px"
+              type="button"
+              class="btn btn-outline-warning"
+              [routerLink]="['/alumno/form', alumno.idalumno]"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button
+              style="margin: 10px"
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="delete(alumno)"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
