@@ -4,17 +4,22 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { FormsModule } from '@angular/forms';
-import { Router,RouterModule } from '@angular/router';
+import { FormAlumnoComponent } from './alumno/form-alumno.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
-  
     LoginComponent,
+    HomeComponent,
+    TopBarComponent,
+    SideBarComponent,
+    FormAlumnoComponent,
        HomeComponent,
        TopBarComponent,
        SideBarComponent,
@@ -27,7 +32,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatTableModule,
     MatPaginatorModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
   ]
 })
 export class ViewsModule { }

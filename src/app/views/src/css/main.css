@@ -92,6 +92,7 @@ body, html{
 .dashboard-sideBar{
 	left: 0;
 	z-index: 2;
+	/*background-image: url('./assets/img/sideBar-font.jpg');*/
 	background-image: url('../../../../assets/img/sideBar-font.jpg');
 	border-right: 1px solid rgba(255, 255, 255, .4);
 	overflow: hidden;
@@ -358,10 +359,10 @@ body, html{
 	transition: all .3s ease-in-out;
 }
 .tile-number{
-	right: 0;
+	right: 0;/*
 	-webkit-user-select: none;
 	-moz-user-select: none;
-	-ms-user-select: none;
+	-ms-user-select: none;*/
 }
 .tile-number > p{
 	font-size: 70px;
@@ -483,8 +484,8 @@ body, html{
         height: 60px;
         left: 50%;
         margin-left: -30px;
-        -webkit-transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
+        /*-webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;*/
     }
     .cd-timeline-img img{
         width: 60px;
