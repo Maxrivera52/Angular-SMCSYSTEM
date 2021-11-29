@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class SideBarComponent implements OnInit {
 
   constructor() { }
+  username="";
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
+    this.username = document.cookie.split(";")[1].split("=")[1];
   }
 
 }

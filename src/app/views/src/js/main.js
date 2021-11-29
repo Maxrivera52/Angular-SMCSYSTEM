@@ -12,16 +12,16 @@ $(document).ready(function(){
 	});
 	$('.btn-exit-system').on('click', function(){
 		swal({
-		  	title: 'Are you sure?',
-		  	text: "The current session will be closed",
+		  	title: '¿Estás seguro?',
+		  	text: "Se cerrará la sesión actual",
 		  	type: 'warning',
 		  	showCancelButton: true,
 		  	confirmButtonColor: '#03A9F4',
 		  	cancelButtonColor: '#F44336',
-		  	confirmButtonText: '<i class="zmdi zmdi-run"></i> Yes, Exit!',
-		  	cancelButtonText: '<i class="zmdi zmdi-close-circle"></i> No, Cancel!'
+		  	confirmButtonText: '<i class="zmdi zmdi-run"></i> Sí, salir!',
+		  	cancelButtonText: '<i class="zmdi zmdi-close-circle"></i> No, Regresar!'
 		}).then(function () {
-			window.location.href="index.html";
+			window.location.href="login";
 		});
 	});
 	$('.btn-menu-dashboard').on('click', function(){

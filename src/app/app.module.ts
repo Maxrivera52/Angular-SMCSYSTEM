@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { ModelsModule } from './models/models.module';
 import { ServicesModule } from './services/services.module';
 import { ViewsModule } from './views/views.module';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     FormsModule,
     ModelsModule,
     ViewsModule,

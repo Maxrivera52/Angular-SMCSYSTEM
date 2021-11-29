@@ -4,5 +4,13 @@ body{
 	background-size: cover;
 }
 #UserEmail , #UserPass{
-    color: #FFF
+    color: #FFF;
+}
+
+#logintitle{
+    font-size: 25px;
+}
+
+.hrlogin{
+    margin: 10px 25px;
 }

@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FormsModule } from '@angular/forms';
+import { Router,RouterModule } from '@angular/router';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -13,10 +15,12 @@ import { FormsModule } from '@angular/forms';
        HomeComponent,
        TopBarComponent,
        SideBarComponent,
+       UsuariosComponent,
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ]
 })
 export class ViewsModule { }
