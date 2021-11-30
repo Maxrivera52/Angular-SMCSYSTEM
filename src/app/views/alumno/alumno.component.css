@@ -11,6 +11,16 @@
 .rowUser:hover{
     cursor: pointer;
 }
+
 .mtbutton{
     margin-left: 90%;
 }
+
+table {
+    width: 100%;
+  }
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }

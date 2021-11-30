@@ -16,49 +16,55 @@
       <mat-icon>add</mat-icon>
     </button>
 
-  <div>
-    <table class="mat-elevation-z2 tblAlu">
-      <thead class="thead-dark">
-        <tr>
-          <th class="text-center">CODIGO</th>
-          <th class="text-center">NOMBRE</th>
-          <th class="text-center">APELLIDO</th>
-          <th class="text-center">DNI</th>
-          <th class="text-center">TELEFONO</th>
-          <th class="text-center">ESTADO</th>
-          <th class="text-center">ACCIONES</th>
-        </tr>
-      </thead>
+    <div>
+      <table class="mat-elevation-z2 tblAlu">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center">CODIGO</th>
+            <th class="text-center">NOMBRE</th>
+            <th class="text-center">APELLIDO</th>
+            <th class="text-center">DNI</th>
+            <th class="text-center">TELEFONO</th>
+            <th class="text-center">ESTADO</th>
+            <th class="text-center">ACCIONES</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr *ngFor="let alumno of alumnocl">
-          <td class="text-center" scope="row">
-            {{ alumno.idalumno }}
-          </td>
-          <td class="text-center">{{ alumno.nombre }}</td>
-          <td class="text-center">{{ alumno.apellido }}</td>
-          <td class="text-center">{{ alumno.dni }}</td>
-          <td class="text-center">{{ alumno.telefono }}</td>
-          <td class="text-center">{{ alumno.estado }}</td>
-          <td class="d-flex">
-            <button
-              style="margin: 10px"
-              type="button"
-              class="btn btn-raised btn-warning"
-              [routerLink]="['/alumno/form', alumno.idalumno]"
-            >
-              <i class="zmdi zmdi-edit"></i>
-            </button>
-            <button
-              style="margin: 10px"
-              type="button"
-              class="btn btn-raised btn-danger"
-              (click)="delete(alumno)"
-            >
-              <i class="zmdi zmdi-delete"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr *ngFor="let alumno of alumnocl">
+            <td class="text-center" scope="row">
+              {{ alumno.idalumno }}
+            </td>
+            <td class="text-center">{{ alumno.nombre }}</td>
+            <td class="text-center">{{ alumno.apellido }}</td>
+            <td class="text-center">{{ alumno.dni }}</td>
+            <td class="text-center">{{ alumno.telefono }}</td>
+            <td class="text-center">{{ alumno.estado }}</td>
+            <td class="text-center">
+              <button
+                style="margin: 10px"
+                mat-stroked-button
+                color="primary"
+                class="mtbutton"
+                [routerLink]="['/alumno/form', alumno.idalumno]"
+              >
+                <i class="zmdi zmdi-edit"></i>
+              </button>
+              <button
+                style="margin: 10px"
+                mat-stroked-button color="warn"
+                class="mtbutton"
+                (click)="delete(alumno)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons aria-label="Selecciona una pagina">
+
+			</mat-paginator>
+    </div>
   </div>
+</section>
