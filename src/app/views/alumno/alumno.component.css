@@ -1,6 +1,16 @@
-.contenedor {
-    display: flex;
-    flex-direction: column;
-    margin:1rem auto;
-    max-width: 600px;
+.tblAlu{
+    width: 100%;
+}
+.headerUser{
+    padding: 25px 10px;
+}
+.headerUser > h2{
+    font-size:40px;
+}
+
+.rowUser:hover{
+    cursor: pointer;
+}
+.mtbutton{
+    margin-left: 90%;
 }

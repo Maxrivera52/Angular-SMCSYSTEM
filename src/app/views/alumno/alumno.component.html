@@ -1,25 +1,23 @@
-<div class="container">
-  <div>
-    <router-outlet></router-outlet>
+<app-side-bar></app-side-bar>
+<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+  <app-top-bar></app-top-bar>
+  <div class="text-center headerUser">
+    <h2>Lista de Alumnos</h2>
   </div>
-</div>
 
-<div class="container">
-  <h2 style="color: blue; font-weight: bold" class="text-center">
-    Listado de Alumnos
-  </h2>
-  <div class="col text-center">
+  <div>
     <button
-      class="btn btn-raised btn-success"
-      type="button"
+      mat-stroked-button
+      color="primary"
+      class="mtbutton"
       [routerLink]="['/alumno/form']"
     >
-      <i class="zmdi zmdi-plus-circle"></i> Registrar
+      <mat-icon>add</mat-icon>
     </button>
-  </div>
-  <br />
-  <div class="table-responsive">
-    <table class="table table-bordered table-condensed table-hover">
+
+  <div>
+    <table class="mat-elevation-z2 tblAlu">
       <thead class="thead-dark">
         <tr>
           <th class="text-center">CODIGO</th>
@@ -63,4 +61,4 @@
         </tr>
       </tbody>
     </table>
-</div>
+  </div>

@@ -1,3 +1,4 @@
+import { AlumnoComponent } from './alumno/alumno.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
        TopBarComponent,
        SideBarComponent,
        UsuariosComponent,
+       AlumnoComponent
   ],
   imports: [
     CommonModule,

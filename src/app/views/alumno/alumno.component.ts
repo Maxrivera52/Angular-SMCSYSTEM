@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { Alumnocl } from 'src/app/models/alumnocl';
