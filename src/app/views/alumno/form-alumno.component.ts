@@ -11,7 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormAlumnoComponent implements OnInit {
 
-  
   alumno: Alumnocl = new Alumnocl();
   titulo: string = "Registro de Alumno";
 

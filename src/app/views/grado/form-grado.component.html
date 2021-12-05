@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>Grados</title>
+</head>
+<app-side-bar></app-side-bar>
+<body>
+    <div class="container">
+        <div class="car-body">
+            <form style=" width: 450px; padding: 30px; background: #24303c; border-radius: 4px; color: white;" #gradoform="ngForm" class="form-sign">
+                <h1 style="text-align: center;" class=" card-title">{{titulo}}</h1>
+                <div class="form-group">DESCRIPCION
+                    <input type="text" class="form-control" name="descripcion" [(ngModel)]="grado.descripcion" minlength="3" #descripcion="ngModel" required pattern="[A-Za-z0-9 ]{3,50}">
+                    <div class="invalid-feedback" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                        <div style="color: red;" *ngIf="descripcion.errors?.['required']">
+                            *Descripcion obligatoria*
+                        </div>
+                        <div *ngIf="descripcion.errors?.['minlength']">
+                            Debe tener al menos 3 caracteres
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="form-group">ESTADO
+                    <input type="text" class="form-control" name="estado" [(ngModel)]="grado.estado" required maxlength="1" #estado="ngModel">
+                    <div class="invalid-feedback" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+                        <div style="color: red;" *ngIf="estado.errors?.['required']">
+                            *Estado obligatorio*
+                        </div>
+    
+                        <div *ngIf="estado.errors?.['maxlength']">
+                            Debe tener como máximo 1 caracter
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-success" role="button" (click)='create()' *ngIf="!grado.idgrado else elseBlock" [disabled]="!gradoform.form.valid"> <i class="fas fa-save"></i> Guardar</button>
+                    <a style="margin: 5px;" type="submit" class="btn btn-warning" role="button" href="grado"> <i class="fas fa-arrow-left"></i> Regresar</a>
+                <ng-template #elseBlock>
+                    <button type="submit" class="btn btn-info" role="button" (click)='update()' [disabled]="!gradoform.form.valid"> <i class="fas fa-redo-alt"></i> Actualizar</button>
+                </ng-template>
+                </div>
+    
+            </form>
+        </div>
+    </div>
+        
+</body>
+</html>
+
+

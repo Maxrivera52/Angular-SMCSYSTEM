@@ -14,6 +14,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { GradoComponent } from './grado/grado.component';
+import { FormGradoComponent } from './grado/form-grado.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { MatIconModule } from '@angular/material/icon';
        SideBarComponent,
        UsuariosComponent,
        AlumnoComponent,
+       GradoComponent,
+       FormGradoComponent,
   ],
   imports: [
     CommonModule,

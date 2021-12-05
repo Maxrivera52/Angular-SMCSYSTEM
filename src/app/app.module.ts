@@ -8,13 +8,15 @@ import { ModelsModule } from './models/models.module';
 import { ServicesModule } from './services/services.module';
 import { ViewsModule } from './views/views.module';
 import { AlumnoComponent } from './views/alumno/alumno.component';
+import { GradoComponent } from './views/grado/grado.component';
+import { FormGradoComponent } from './views/grado/form-grado.component';
 
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 
 import {HttpClientModule} from '@angular/common/http';
-
+import { MatTableDataSource } from '@angular/material/table';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,10 +28,15 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { Routes, RouterModule} from '@angular/router';
 
 const routers:Routes=[
-  { path:'',redirectTo:'/parte1',pathMatch:'full'},
+  { path:'',redirectTo:'/alumno',pathMatch:'full'},
   { path:'alumno', component:AlumnoComponent},
   { path: 'alumno/form', component:FormAlumnoComponent},
   { path: 'alumno/form/:idalumno', component:FormAlumnoComponent},
+  
+  { path:'',redirectTo:'/grado',pathMatch:'full'},
+  { path:'grado', component:GradoComponent},
+  { path: 'grado/form', component:FormGradoComponent},
+  { path: 'grado/form/:idgrado', component:FormGradoComponent},
 
 ]
 @NgModule({

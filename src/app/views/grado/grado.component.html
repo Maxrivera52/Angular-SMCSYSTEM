@@ -1,0 +1,79 @@
+<app-side-bar></app-side-bar>
+<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+  <app-top-bar></app-top-bar>
+  <div class="text-center headerUser">
+    <h2>Lista de Grados</h2>
+  </div>
+
+  <div>
+    <button
+      mat-stroked-button
+      color="primary"
+      class="mtbutton"
+      [routerLink]="['/grado/form']"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+    <!--
+    <div>
+      <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="filtrar($event)" placeholder="Buscar">
+      </mat-form-field>
+    </div>
+-->
+    <div>
+      <table class="mat-elevation-z2 tblAlu">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center">CODIGO</th>
+            <th class="text-center">DESCRIPCION</th>
+            <th class="text-center">ESTADO</th>
+            <th class="text-center">ACCIONES</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let grado of gradocl">
+            <td class="text-center" scope="row">
+              {{ grado.idgrado }}
+            </td>
+            <td class="text-center">{{ grado.descripcion }}</td>
+            <td class="text-center">
+              <div *ngIf="grado.estado==1; else desh"><span class="badge badge-success">Habilitado</span></div>
+						  <ng-template #desh>Deshabilitado</ng-template>
+            </td>
+            <td class="text-center">
+              <button
+                style="margin: 10px"
+                mat-stroked-button
+                color="primary"
+                class="mtbutton"
+                [routerLink]="['/grado/form', grado.idgrado]"
+              >
+                <i class="zmdi zmdi-edit"></i>
+              </button>
+              <button
+                style="margin: 10px"
+                mat-stroked-button
+                color="warn"
+                class="mtbutton"
+                (click)="delete(grado)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator
+        [pageSizeOptions]="[10, 20, 50]"
+        showFirstLastButtons
+        aria-label="Selecciona una pagina"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</section>
+
