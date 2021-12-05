@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Alumnocl } from '../models/alumnocl';
@@ -24,6 +24,12 @@ export class AlumnoService {
   get(idalumno: number): Observable<Alumnocl> {
     return this.http.get<Alumnocl>(this.url + '/' + idalumno);
   }
+
+  // BUSCAR ALUMNO POR DNI
+  getDni(dni: String): Observable<Alumnocl> {
+    return this.http.get<Alumnocl>(this.url + '/' + dni);
+  }
+
   // MODIFICAR ALUMNO
   update(alumno: Alumnocl): Observable<Alumnocl> {
     return this.http.put<Alumnocl>(this.url, alumno);
@@ -32,4 +38,5 @@ export class AlumnoService {
   delete(idalumno: number): Observable<Alumnocl> {
     return this.http.delete<Alumnocl>(this.url + '/' + idalumno);
   }
+
 }

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,7 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
        TopBarComponent,
        SideBarComponent,
        UsuariosComponent,
-       AlumnoComponent
+       AlumnoComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +37,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatPaginatorModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ViewsModule { }

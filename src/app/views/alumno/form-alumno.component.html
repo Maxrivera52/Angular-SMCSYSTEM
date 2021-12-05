@@ -7,37 +7,83 @@
     <title>Alumnos</title>
 </head>
 <body>
-    <div class="container mt-4 col-lg-4">
+    <div class="container">
         <div class="car-body">
-            <form style=" width: 450px; padding: 30px; background: #24303c; border-radius: 4px; color: white;" class="form-sign">
+            <form style=" width: 450px; padding: 30px; background: #558ac2; border-radius: 4px; color: white;" #alumnoform="ngForm" class="form-sign">
                 <h1 style="text-align: center;" class=" card-title">{{titulo}}</h1>
                 <div class="form-group">NOMBRE
-                    <input style="color: grey;" type="text" class="form-control" name="nombre" [(ngModel)]="alumno.nombre">
+                    <input style="color: grey;" type="text" class="form-control" name="nombre" [(ngModel)]="alumno.nombre" minlength="3" #nombre="ngModel" required pattern="[a-zA-Z ]{3,50}">
+                    <div class="invalid-feedback" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div style="color: red;" *ngIf="nombre.errors?.['required']">
+                            *Nombre obligatorio*
+                        </div>
+                        <div *ngIf="nombre.errors?.['minlength']">
+                            Debe tener al menos 3 caracteres
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">APELLIDO
-                    <input style="color: grey;" type="text" class="form-control" name="apellido" [(ngModel)]="alumno.apellido">
+                    <input type="text" class="form-control" name="apellido" [(ngModel)]="alumno.apellido" required minlength="3" #apellido="ngModel" pattern="[a-zA-Z ]{3,50}">
+                    <div class="invalid-feedback" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                        <div style="color: red;" *ngIf="apellido.errors?.['required']">
+                            *Apellido obligatorio*
+                        </div>
+                        <div *ngIf="apellido.errors?.['minlength']">
+                            Debe tener al menos 3 caracteres
+                        </div>
+                    </div>
                 </div>
     
                 <div class="form-group">DNI
-                    <input style="color: grey;" type="text" class="form-control" name="dni" [(ngModel)]="alumno.dni">
-                    
+                    <input type="text" class="form-control" name="dni" [(ngModel)]="alumno.dni" required minlength="8" maxlength="8" #dni="ngModel" pattern="(^([0-9]{8})|^)$">
+                    <div class="invalid-feedback" *ngIf="dni.invalid && (dni.dirty || dni.touched)">
+                        <div style="color: red;" *ngIf="dni.errors?.['required']">
+                            *Dni obligatorio*
+                        </div>
+    
+                        <div *ngIf="dni.errors?.['minlength']">
+                            Debe tener como minímo o máximo 8 caracteres
+                        </div>
+                        
+                    </div>
                 </div>
     
                 <div class="form-group">TELEFONO
-                    <input style="color: grey;" type="text" class="form-control" name="telefono" [(ngModel)]="alumno.telefono">
-                    
+                    <input type="text" class="form-control" name="telefono" [(ngModel)]="alumno.telefono" required minlength="9" maxlength="12" #telefono="ngModel" pattern="(\+51|9)?[ -]*([0-9][ -]*){9}">
+                    <div class="invalid-feedback" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                        <div style="color: red;" *ngIf="telefono.errors?.['required']">
+                            *Telefono obligatorio*
+                        </div>
+    
+                        <div *ngIf="telefono.errors?.['minlength']">
+                            Debe tener como minimo 9 caracteres
+                        </div>
+
+                        <div *ngIf="telefono.errors?.['maxlength']">
+                            Debe tener como máximo 12 caracteres
+                        </div>
+                    </div>
                 </div>
     
                 <div class="form-group">ESTADO
-                    <input style="color: grey;" type="text" class="form-control" name="estado" [(ngModel)]="alumno.estado">
+                    <input type="text" class="form-control" name="estado" [(ngModel)]="alumno.estado" required maxlength="1" #estado="ngModel">
+                    <div class="invalid-feedback" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+                        <div style="color: red;" *ngIf="estado.errors?.['required']">
+                            *Estado obligatorio*
+                        </div>
+    
+                        <div *ngIf="estado.errors?.['maxlength']">
+                            Debe tener como máximo 1 caracter
+                        </div>
+                    </div>
                 </div>
     
                 <div class="col text-center">
-                    <button type="submit" class="btn btn-success" role="button" (click)='create()' *ngIf="!alumno.idalumno else elseBlock"> <i class="fas fa-save"></i> Guardar</button>
+                    <button type="submit" class="btn btn-success" role="button" (click)='create()' *ngIf="!alumno.idalumno else elseBlock" [disabled]="!alumnoform.form.valid"> <i class="fas fa-save"></i> Guardar</button>
                     <a style="margin: 5px;" type="submit" class="btn btn-warning" role="button" href="alumno"> <i class="fas fa-arrow-left"></i> Regresar</a>
                 <ng-template #elseBlock>
-                    <button type="submit" class="btn btn-info" role="button" (click)='update()'> <i class="fas fa-redo-alt"></i> Actualizar</button>
+                    <button type="submit" class="btn btn-info" role="button" (click)='update()' [disabled]="!alumnoform.form.valid"> <i class="fas fa-redo-alt"></i> Actualizar</button>
                 </ng-template>
                 </div>
     

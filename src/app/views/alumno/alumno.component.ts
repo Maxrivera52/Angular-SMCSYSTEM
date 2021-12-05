@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { Alumnocl } from 'src/app/models/alumnocl';
@@ -11,6 +11,8 @@ import { Alumnocl } from 'src/app/models/alumnocl';
 export class AlumnoComponent implements OnInit {
 
   alumnocl = null as any;
+  //dataSource = null as any;
+  dataSource!: MatTableDataSource<Alumnocl>;
 
   constructor(private alumnoservice: AlumnoService, private router: Router) { }
 
@@ -18,6 +20,13 @@ export class AlumnoComponent implements OnInit {
 
     this.alumnoservice.getAll().subscribe(
       result => this.alumnocl = result);
+    
+    //this.dataSource = new MatTableDataSource(this.alumnocl);
+  }
+
+  // FILTRO DE BUSQUEDA
+  filtrar(valor: String) {
+    this.dataSource.filter = valor.trim().toLowerCase();
   }
 
   //ELIMINAR ALUMNO

@@ -1,7 +1,6 @@
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { Alumnocl } from 'src/app/models/alumnocl';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -12,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormAlumnoComponent implements OnInit {
 
-  //form:FormGroup;
+  
   alumno: Alumnocl = new Alumnocl();
   titulo: string = "Registro de Alumno";
 
@@ -57,13 +56,6 @@ export class FormAlumnoComponent implements OnInit {
 
   }
 
-  // Validaciones
-
-  /*private buildForm(){
-    this.form = this.formBuilder.group({
-
-    })
-  }*/
 
 
 }
