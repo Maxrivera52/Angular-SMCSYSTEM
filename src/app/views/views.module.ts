@@ -14,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ProfesorComponent } from './profesor/profesor.component';
+import { MatInputModule } from '@angular/material/input';
 import { GradoComponent } from './grado/grado.component';
 import { FormGradoComponent } from './grado/form-grado.component';
 
@@ -25,13 +27,14 @@ import { FormGradoComponent } from './grado/form-grado.component';
     TopBarComponent,
     SideBarComponent,
     FormAlumnoComponent,
-       HomeComponent,
-       TopBarComponent,
-       SideBarComponent,
-       UsuariosComponent,
-       AlumnoComponent,
-       GradoComponent,
-       FormGradoComponent,
+    HomeComponent,
+    TopBarComponent,
+    SideBarComponent,
+    UsuariosComponent,
+    AlumnoComponent,
+    ProfesorComponent,
+    GradoComponent,
+    FormGradoComponent,
   ],
   imports: [
     CommonModule,

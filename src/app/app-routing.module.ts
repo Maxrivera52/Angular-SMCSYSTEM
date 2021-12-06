@@ -7,13 +7,15 @@ import { AlumnoComponent } from './views/alumno/alumno.component';
 import { GradoComponent } from './views/grado/grado.component';
 
 import { UsuariosComponent } from './views/usuarios/usuarios.component';
+import { ProfesorComponent } from './views/profesor/profesor.component';
 
 const routes: Routes = [
   { path: '', component:LoginComponent },
   { path: 'login', component:LoginComponent },
   { path: 'home', component:HomeComponent },
-  {path: 'alumno', component:AlumnoComponent},
+  { path: 'alumno', component:AlumnoComponent},
   { path: 'usuarios', component:UsuariosComponent },
+  { path: 'profesor', component:ProfesorComponent },
   {path: 'grado', component:GradoComponent}
 ];
 
