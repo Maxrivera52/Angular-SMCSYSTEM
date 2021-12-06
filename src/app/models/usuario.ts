@@ -1,8 +1,8 @@
 export class Usuario {
-    idusuario:Number = 0;
-    nombre:String = "";
-    correo:String = "";
-    clave:String = "";
-    estado:String = "";
-    idrol:Number = 0;
+    idusuario:number = 0;
+    nombre:string = "";
+    correo:string = "";
+    clave:string = "";
+    estado:string = "";
+    idrol:number = 0;
 }

@@ -35,7 +35,6 @@ const routers:Routes=[
 @NgModule({
   declarations: [
     AppComponent,
-    AlumnoComponent
   ],
   imports: [
     BrowserModule,

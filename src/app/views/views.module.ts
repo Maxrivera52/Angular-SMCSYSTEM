@@ -12,6 +12,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AlumnoComponent } from './alumno/alumno.component';
+import { ProfesorComponent } from './profesor/profesor.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -20,10 +23,12 @@ import { MatIconModule } from '@angular/material/icon';
     TopBarComponent,
     SideBarComponent,
     FormAlumnoComponent,
-       HomeComponent,
-       TopBarComponent,
-       SideBarComponent,
-       UsuariosComponent,
+    HomeComponent,
+    TopBarComponent,
+    SideBarComponent,
+    UsuariosComponent,
+    AlumnoComponent,
+    ProfesorComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +39,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatInputModule
   ]
 })
 export class ViewsModule { }
