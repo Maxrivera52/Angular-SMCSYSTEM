@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { Alumnocl } from 'src/app/models/alumnocl';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-alumno',
   templateUrl: './alumno.component.html',
@@ -12,7 +13,8 @@ export class AlumnoComponent implements OnInit {
 
   alumnocl = null as any;
   //dataSource = null as any;
-  dataSource!: MatTableDataSource<Alumnocl>;
+  displayedColumns: string[] = ['idalumno', 'nombre', 'apellido', 'dni', 'telefono', 'estado'];
+  dataSource!: MatTableDataSource<Alumnocl>
 
   constructor(private alumnoservice: AlumnoService, private router: Router) { }
 
@@ -25,8 +27,14 @@ export class AlumnoComponent implements OnInit {
   }
 
   // FILTRO DE BUSQUEDA
-  filtrar(valor: String) {
-    this.dataSource.filter = valor.trim().toLowerCase();
+  filtrar() {
+    //const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filterPredicate = (data, filter) =>{
+      let dataStr = data.idalumno + data.nombre + data.apellido +
+      data.dni + data.telefono + data.estado;
+      dataStr = dataStr.toLowerCase();
+      return dataStr.indexOf(filter) != -1;
+    }
   }
 
   //ELIMINAR ALUMNO

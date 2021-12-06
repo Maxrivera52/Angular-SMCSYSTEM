@@ -37,7 +37,7 @@
                 </div>
     
                 <div class="form-group">DNI
-                    <input type="text" class="form-control" name="dni" [(ngModel)]="alumno.dni" required minlength="8" maxlength="8" #dni="ngModel" pattern="(^([0-9]{8})|^)$">
+                    <input type="text" class="form-control" name="dni" [(ngModel)]="alumno.dni" required minlength="8" maxlength="8" #dni="ngModel" pattern="(^(\d{8})|^)$">
                     <div class="invalid-feedback" *ngIf="dni.invalid && (dni.dirty || dni.touched)">
                         <div style="color: red;" *ngIf="dni.errors?.['required']">
                             *Dni obligatorio*

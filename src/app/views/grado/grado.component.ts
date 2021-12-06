@@ -12,7 +12,7 @@ import { GradoService } from 'src/app/services/grado.service';
 export class GradoComponent implements OnInit {
 
   gradocl = null as any;
-  dataSource!: MatTableDataSource<Gradocl>;
+  dataSource!: MatTableDataSource<Gradocl>
 
   constructor(private gradoservice: GradoService, private router: Router) { }
 
@@ -25,8 +25,9 @@ export class GradoComponent implements OnInit {
   }
 
   // FILTRO DE BUSQUEDA
-  filtrar(valor: String) {
-    this.dataSource.filter = valor.trim().toLowerCase();
+  filtrar(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   //ELIMINAR GRADO
