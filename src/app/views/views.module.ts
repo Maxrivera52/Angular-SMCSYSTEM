@@ -1,3 +1,4 @@
+import { AlumnoComponent } from './alumno/alumno.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
@@ -9,12 +10,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { AlumnoComponent } from './alumno/alumno.component';
 import { ProfesorComponent } from './profesor/profesor.component';
 import { MatInputModule } from '@angular/material/input';
+import { GradoComponent } from './grado/grado.component';
+import { FormGradoComponent } from './grado/form-grado.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +32,9 @@ import { MatInputModule } from '@angular/material/input';
     SideBarComponent,
     UsuariosComponent,
     AlumnoComponent,
-    ProfesorComponent
+    ProfesorComponent,
+    GradoComponent,
+    FormGradoComponent,
   ],
   imports: [
     CommonModule,

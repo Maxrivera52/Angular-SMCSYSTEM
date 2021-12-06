@@ -2,7 +2,6 @@ import { AlumnoService } from 'src/app/services/alumno.service';
 import { Alumnocl } from 'src/app/models/alumnocl';
 import { Component, OnInit } from '@angular/core';
 
-
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -55,6 +54,7 @@ export class FormAlumnoComponent implements OnInit {
     );
 
   }
+
 
 
 }
