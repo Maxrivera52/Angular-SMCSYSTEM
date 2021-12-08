@@ -1,0 +1,25 @@
+
+<mat-form-field appearance="fill">
+    <mat-label>Descripcion</mat-label>
+    <input placeholder="DESCRIPCION" matInput [(ngModel)]="seccion.descripcion"/>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <input placeholder="Estado" matInput [(ngModel)]="seccion.estado"/>
+    </mat-form-field>
+  
+  
+  <mat-form-field appearance="fill">
+    <mat-label *ngIf="seccion.idgrado">{{seccion.idgrado.descripcion}}</mat-label>
+    <mat-select matInput placeholder="Seleccione un grado" name="grado">
+      <mat-option *ngFor="let gra of grado" [value]="gra.idgrado">{{gra.descripcion}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <button style="margin: 20px" mat-stroked-button color="primary" class="mtbutton" (click)='aceptar()'>
+      Aceptar
+  </button>
+  <button style="margin: 20px" mat-stroked-button color="warn" class="mtbutton" (click)='cerrar()'>
+      Cancelar
+  </button>

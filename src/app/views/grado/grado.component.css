@@ -1,26 +1,21 @@
-.tblAlu{
+.tbl{
     width: 100%;
 }
-.headerUser{
+.headerModule{
     padding: 25px 10px;
 }
-.headerUser > h2{
+.headerModule > h2{
     font-size:40px;
 }
 
-.rowUser:hover{
+.rowTable:hover{
     cursor: pointer;
 }
-
 .mtbutton{
     margin-left: 90%;
 }
 
-table {
-    width: 100%;
-  }
-  
-.mat-form-field {
-    font-size: 14px;
-    width: 50%;
-  }
+.mat-form-field{
+    width: 80%;
+    margin-left:10%;
+}
