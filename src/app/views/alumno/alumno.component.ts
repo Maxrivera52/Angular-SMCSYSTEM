@@ -72,8 +72,8 @@ export class AlumnoComponent implements OnInit {
       <form>
         <input id="nombre" type="text" value="${alu.nombre}" class="form-control" placeholder="Nombre" required/>
         <input id="apellido" type="text" value="${alu.apellido}" class="form-control" placeholder="Apellido" required/>
-        <input id="dni" type="number" value="${alu.dni}" class="form-control" placeholder="DNI" maxlength="8" required/>
-        <input id="telefono" type="tel" value="${alu.telefono}" class="form-control ml-4" placeholder="Teléfono" required/>
+        <input id="dni" type="text" value="${alu.dni}" class="form-control" placeholder="DNI" maxlength="8" required/>
+        <input id="telefono" type="tel" value="${alu.telefono}" class="form-control ml-4" placeholder="Teléfono" required minlength="9" maxlength="13"/>
       </form>`,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -125,8 +125,8 @@ export class AlumnoComponent implements OnInit {
       <form>
       <input id="nombre" type="text" class="form-control" placeholder="Nombre" required/>
       <input id="apellido" type="text" class="form-control" placeholder="Apellido" required/>
-      <input id="dni" type="number" class="form-control" placeholder="DNI" maxlength="8" required/>
-      <input id="telefono" type="tel" class="form-control ml-4" placeholder="Teléfono" required/>
+      <input id="dni" type="text" class="form-control" placeholder="DNI" maxlength="8" required/>
+      <input id="telefono" type="tel" class="form-control ml-4" placeholder="Teléfono" required minlength="9" maxlength="13"/>
       </form>`,
       showCancelButton: true,
       confirmButtonColor: '#00a62c',
