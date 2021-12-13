@@ -1,0 +1,14 @@
+
+<div class="card">
+    <div class="card-header">
+        Eliminar
+    </div>
+    <div class="card-block">
+        <p class="card-text">Estás seguro que deseas eliminar la seccion?</p>
+        <td mat-cell *matCellDef="let row">
+            <button mat-raised-button color="warn" (click)="onEliminar()">Si</button>
+            <button mat-raised-button color="primary" (click)="onCancelar()">No</button>
+        </td>
+    </div>
+</div>
+

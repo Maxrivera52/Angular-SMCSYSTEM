@@ -5,19 +5,21 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { FormAlumnoComponent } from './alumno/form-alumno.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfesorComponent } from './profesor/profesor.component';
 import { MatInputModule } from '@angular/material/input';
 import { GradoComponent } from './grado/grado.component';
-import { FormGradoComponent } from './grado/form-grado.component';
+import { SeccionComponent } from './seccion/seccion.component';
+import { DialogSeccionComponent } from './dialog-seccion/dialog-seccion.component';
+import { SeccionModalComponent } from './seccion-modal/seccion-modal.component';
+import {MatSelectModule} from '@angular/material/select';
+import { CursoComponent } from './curso/curso.component';
 
 
 @NgModule({
@@ -26,7 +28,6 @@ import { FormGradoComponent } from './grado/form-grado.component';
     HomeComponent,
     TopBarComponent,
     SideBarComponent,
-    FormAlumnoComponent,
     HomeComponent,
     TopBarComponent,
     SideBarComponent,
@@ -34,7 +35,10 @@ import { FormGradoComponent } from './grado/form-grado.component';
     AlumnoComponent,
     ProfesorComponent,
     GradoComponent,
-    FormGradoComponent,
+    SeccionComponent,
+    DialogSeccionComponent,
+    SeccionModalComponent,
+    CursoComponent,
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,8 @@ import { FormGradoComponent } from './grado/form-grado.component';
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ]
 })
 export class ViewsModule { }

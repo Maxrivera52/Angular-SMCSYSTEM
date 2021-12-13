@@ -1,5 +1,5 @@
-export class Gradocl {
-    idgrado: number=0;
+export class Cursocl {
+    idcurso: number=0;
     descripcion: string="";
     estado: string="";
 }
