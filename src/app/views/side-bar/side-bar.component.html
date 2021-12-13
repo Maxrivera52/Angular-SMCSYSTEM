@@ -26,7 +26,7 @@
             </ul>
         </div>
         <!-- SideBar Menu -->
-        <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+        <ul class="list-unstyled full-box dashboard-sideBar-Menu"*ngIf="sessionStorage.getItem('rol')=='administrador'">
             <li>
                 <a [routerLink]="['/home']">
                     <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
@@ -110,5 +110,50 @@
             </li>
         -->
         </ul>
+
+
+
+
+        <ul class="list-unstyled full-box dashboard-sideBar-Menu"*ngIf="sessionStorage.getItem('rol')=='docente'">
+            <li>
+                <a [routerLink]="['/home']">
+                    <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a  class="btn-sideBar-SubMenu">
+                    <i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Cursos <i
+                        class="zmdi zmdi-caret-down pull-right"></i>
+                </a>
+                <ul class="list-unstyled full-box">
+                    <li>
+                        <a href="admin.html"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Administradores</a>
+                    </li>
+                    <li>
+                        <a href="profesor"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Maestros</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled full-box dashboard-sideBar-Menu"*ngIf="sessionStorage.getItem('rol')=='alumno'">
+            <li>
+                <a [routerLink]="['/home']">
+                    <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a  class="btn-sideBar-SubMenu">
+                    <i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Mi Horario <i
+                        class="zmdi zmdi-caret-down pull-right"></i>
+                </a>
+                <ul class="list-unstyled full-box">
+                    <li>
+                        <a href="admin.html"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Cursos</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
     </div>
 </section>

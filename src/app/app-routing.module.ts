@@ -8,6 +8,7 @@ import { GradoComponent } from './views/grado/grado.component';
 
 import { UsuariosComponent } from './views/usuarios/usuarios.component';
 import { ProfesorComponent } from './views/profesor/profesor.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component:LoginComponent },
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'home', component:HomeComponent },
   { path: 'alumno', component:AlumnoComponent},
   { path: 'usuarios', component:UsuariosComponent },
-  { path: 'profesor', component:ProfesorComponent },
+  { path: 'profesor',canActivate:[AdminGuard],  component:ProfesorComponent },
   {path: 'grado', component:GradoComponent}
 ];
 

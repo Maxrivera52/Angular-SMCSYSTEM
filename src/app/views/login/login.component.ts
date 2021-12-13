@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
+import { SRolService } from 'src/app/services/srol.service';
 import { SUsuarioService } from 'src/app/services/susuario.service';
 
 
@@ -14,7 +15,7 @@ declare var swal : any;
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private service:SUsuarioService, private router:Router){}
+  constructor(private service:SUsuarioService,private rolservice:SRolService, private router:Router){}
 
   correo:string="";
   clave:string="";
@@ -33,9 +34,16 @@ export class LoginComponent implements OnInit {
         logres = res;
         console.log(logres)
         if(logres!=null){
+          this.rolservice.getById(res.idrol).subscribe({
+            next:(rol)=>{
+              document.cookie = `username=${res.nombre}`;
+              document.cookie = `rol=${rol.descripcion}`;
+              sessionStorage.setItem("rol",rol.descripcion);
+              window.location.href = "/home";
+            }
+          });
           //this.router.navigate(["/home"]);
-          document.cookie = `username=${res.nombre}`;
-          window.location.href = "/home";
+       
           //this.router.navigate()
         }else{
           swal({
@@ -53,8 +61,6 @@ export class LoginComponent implements OnInit {
 		  	type: 'warning',
 		  	confirmButtonColor: '#03A9F4',
       });
-    }
-    
+    } 
   }
-
 }

@@ -47,7 +47,6 @@ export class ProfesorComponent implements OnInit {
         data.profesor.apellido + data.profesor.telefono + 
         data.usuario.correo + data.profesor.dni;
       dataStr = dataStr.toLowerCase();
-      console.log(dataStr);
       return dataStr.indexOf(filter) != -1;
     }
   }
