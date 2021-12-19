@@ -19,23 +19,27 @@
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 tbl">
             <ng-container matColumnDef="idalumno">
                 <th mat-header-cell *matHeaderCellDef="">ID</th>
-                <td mat-cell *matCellDef="let alu">{{alu.idalumno}}</td>
+                <td mat-cell *matCellDef="let alu">{{alu.alumno.idalumno}}</td>
             </ng-container>
             <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef>NOMBRE</th>
-                <td mat-cell *matCellDef="let alu">{{alu.nombre}}</td>
+                <td mat-cell *matCellDef="let alu">{{alu.alumno.nombre}}</td>
             </ng-container>
             <ng-container matColumnDef="apellido">
                 <th mat-header-cell *matHeaderCellDef>APELLIDO</th>
-                <td mat-cell *matCellDef="let alu">{{alu.apellido}}</td>
+                <td mat-cell *matCellDef="let alu">{{alu.alumno.apellido}}</td>
             </ng-container>
             <ng-container matColumnDef="dni">
                 <th mat-header-cell *matHeaderCellDef>DNI</th>
-                <td mat-cell *matCellDef="let alu">{{alu.dni}}</td>
+                <td mat-cell *matCellDef="let alu">{{alu.alumno.dni}}</td>
             </ng-container>
             <ng-container matColumnDef="telefono">
                 <th mat-header-cell *matHeaderCellDef>TELÉFONO</th>
-                <td mat-cell *matCellDef="let alu">{{alu.telefono}}</td>
+                <td mat-cell *matCellDef="let alu">{{alu.alumno.telefono}}</td>
+            </ng-container>
+            <ng-container matColumnDef="correo">
+                <th mat-header-cell *matHeaderCellDef>CORREO</th>
+                <td mat-cell *matCellDef="let alu">{{alu.usuario.correo}}</td>
             </ng-container>
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef>ESTADO</th>

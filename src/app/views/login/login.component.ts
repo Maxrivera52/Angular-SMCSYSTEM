@@ -36,7 +36,9 @@ export class LoginComponent implements OnInit {
         if(logres!=null){
           this.rolservice.getById(res.idrol).subscribe({
             next:(rol)=>{
-              document.cookie = `username=${res.nombre}`;
+
+              
+            //  document.cookie = `username=${res.nombre}`;
               document.cookie = `rol=${rol.descripcion}`;
               sessionStorage.setItem("rol",rol.descripcion);
               window.location.href = "/home";

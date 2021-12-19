@@ -17,7 +17,6 @@ import { MatInputModule } from '@angular/material/input';
 import { GradoComponent } from './grado/grado.component';
 import { SeccionComponent } from './seccion/seccion.component';
 import { DialogSeccionComponent } from './dialog-seccion/dialog-seccion.component';
-import { SeccionModalComponent } from './seccion-modal/seccion-modal.component';
 import {MatSelectModule} from '@angular/material/select';
 import { CursoComponent } from './curso/curso.component';
 
@@ -36,8 +35,7 @@ import { CursoComponent } from './curso/curso.component';
     ProfesorComponent,
     GradoComponent,
     SeccionComponent,
-    DialogSeccionComponent,
-    SeccionModalComponent,
+
     CursoComponent,
   ],
   imports: [

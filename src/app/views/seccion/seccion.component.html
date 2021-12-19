@@ -10,7 +10,7 @@
             <mat-label>Filtro</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
         </mat-form-field>
-        <button mat-stroked-button color="primary" class="mtbutton" (click)="openModal()">
+        <button mat-stroked-button color="primary" class="mtbutton" (click)="newSection()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
@@ -19,41 +19,27 @@
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 tbl">
             <ng-container matColumnDef="idseccion">
                 <th mat-header-cell *matHeaderCellDef="">ID</th>
-                <td mat-cell *matCellDef="let sec">{{sec.idseccion}}</td>
+                <td mat-cell *matCellDef="let sec">{{sec.seccion.idseccion}}</td>
             </ng-container>
             <ng-container matColumnDef="descripcion">
                 <th mat-header-cell *matHeaderCellDef>DESCRIPCION</th>
-                <td mat-cell *matCellDef="let sec">{{sec.descripcion}}</td>
+                <td mat-cell *matCellDef="let sec">{{sec.seccion.descripcion}}</td>
+            </ng-container>
+            <ng-container matColumnDef="grado">
+                <th mat-header-cell *matHeaderCellDef>GRADO</th>
+                <td mat-cell *matCellDef="let sec">{{sec.grado.descripcion}}</td>
             </ng-container>
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef>ESTADO</th>
                 <td mat-cell *matCellDef="let sec">
-                    <div *ngIf="sec.estado==1; else desh"><span
+                    <div *ngIf="sec.seccion.estado==1; else desh"><span
                             class="badge badge-success">Activo</span>
                     </div>
                     <ng-template #desh>Inactivo</ng-template>
                 </td>
             </ng-container>
-            <ng-container matColumnDef="idgrado">
-                <th mat-header-cell *matHeaderCellDef>GRADO</th>
-                <td mat-cell *matCellDef="let sec">{{sec.grado.descripcion}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="editar">
-                <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
-                <td mat-cell *matCellDef="let row">
-                    <button style="margin: 20px" mat-stroked-button color="primary" class="mtbutton" (click)="openModal(row)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button style="margin: 20px" mat-stroked-button color="warn" class="mtbutton" (click)="onDelete(row.idseccion)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-            
-
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns:displayedColumns" class="rowTable"></tr>
+            <tr mat-row *matRowDef="let row; columns:displayedColumns"  (click)="openModal(row)" class="rowTable"></tr>
         </table>
         <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons aria-label="Selecciona una pagina">
 
