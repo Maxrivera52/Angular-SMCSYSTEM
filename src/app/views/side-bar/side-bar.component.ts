@@ -16,7 +16,8 @@ export class SideBarComponent implements OnInit {
   }
 
   load(){
-    this.username = document.cookie.split(";")[1].split("=")[1];
+    //this.username = document.cookie.split(";")[1].split("=")[1];
+    this.username = this.sessionStorage.getItem("username")||'NO NAME';
   }
 
 }

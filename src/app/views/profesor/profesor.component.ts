@@ -116,7 +116,7 @@ export class ProfesorComponent implements OnInit {
 
       console.log(dni.value)
 
-      console.log(nombre.value + ", " + apellido.value);
+    console.log(nombre.value + ", " + apellido.value);
       console.log("" + regExpNames.test(nombre.value) + ", " + regExpNames.test(apellido.value));
 
       (regExpNames.test(nombre.value) && regExpNames.test(apellido.value)) ?

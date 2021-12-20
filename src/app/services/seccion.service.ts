@@ -25,7 +25,7 @@ export class SeccionService {
   }
   // BUSCAR SECCION
   get(idseccion: number): Observable<Seccioncl> {
-    const params = `find/${idseccion}`;
+    const params = `/find/${idseccion}`;
     return this.http.get<Seccioncl>(this.url + params);
   }
 

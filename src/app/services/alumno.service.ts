@@ -39,4 +39,9 @@ export class AlumnoService {
     return this.http.delete<Alumnocl>(this.url + '/' + idalumno);
   }
 
+  ////
+  getByUser(id:number):Observable<Alumnocl>{
+    const params = `/iduser/${id}`;
+    return this.http.get<Alumnocl>(this.url+params);
+  }
 }
