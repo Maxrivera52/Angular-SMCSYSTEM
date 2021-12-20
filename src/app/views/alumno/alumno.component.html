@@ -48,7 +48,7 @@
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef>ESTADO</th>
                 <td mat-cell *matCellDef="let alu">
-                    <div *ngIf="alu.estado==1; else desh"><span
+                    <div *ngIf="alu.alumno.estado==1; else desh"><span
                             class="badge badge-success">Activo</span>
                     </div>
                     <ng-template #desh>Inactivo</ng-template>
