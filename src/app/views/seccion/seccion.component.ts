@@ -140,7 +140,7 @@ export class SeccionComponent implements OnInit {
       text: `
       <form>
         ${selectgrad}
-        <input id="descripcion" type="text" class="form-control" placeholder="Ej: A" value="${seccion.seccion.descripcion}" required/>
+        <input id="descripcion" type="text" class="form-control" placeholder="Ej: A12" value="${seccion.seccion.descripcion}" required/>
       </form>`,
       showCancelButton: true,
       confirmButtonColor: '#00a62c',
@@ -151,7 +151,7 @@ export class SeccionComponent implements OnInit {
       const grado = <HTMLSelectElement>document.getElementById("selectgrad");
       const desc = <HTMLInputElement>document.getElementById("descripcion");
 
-      let regExpNames = new RegExp(/^\w$/, "i");
+      let regExpNames = new RegExp(/^\w+$/, "i");
       
       (regExpNames.test(desc.value)) ? grado.value!=""?
           this.updateSection(grado.value,desc.value.toUpperCase(),seccion)
@@ -173,8 +173,7 @@ export class SeccionComponent implements OnInit {
     });
   }
 
-  onDelete(id:number){
-    /*
+  /*onDelete(id:number){
     let dialogRef = this.dialog.open(DialogSeccionComponent,{
       //disableClose:true
     });
@@ -187,7 +186,7 @@ export class SeccionComponent implements OnInit {
         })
       }
     })
-    */
-  }
+    
+  }*/
 
 }
