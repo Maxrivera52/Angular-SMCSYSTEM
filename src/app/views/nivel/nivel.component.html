@@ -1,0 +1,48 @@
+<app-side-bar></app-side-bar>
+<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+    <app-top-bar></app-top-bar>
+    <div class="text-center  headerModule">
+        <h2>Lista de Niveles</h2>
+    </div>
+    <div>
+        <mat-form-field appearance="standard">
+            <mat-label>Filtro</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
+          </mat-form-field>
+        <button mat-stroked-button color="primary" class="mtbutton" (click)="newNivel()">
+            <mat-icon>add</mat-icon>
+        </button>
+        
+    </div>
+    <div>
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 tbl">
+            <ng-container matColumnDef="idnivel">
+                <th mat-header-cell *matHeaderCellDef="">ID</th>
+                <td mat-cell *matCellDef="let niv">{{niv.idnivel}}</td>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>NOMBRE</th>
+                <td mat-cell *matCellDef="let niv">{{niv.nombre}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef>ESTADO</th>
+                <td mat-cell *matCellDef="let niv">
+                    <div *ngIf="niv.estado==1; else desh"><span
+                            class="badge badge-success">Activo</span>
+                    </div>
+                    <ng-template #desh>Inactivo</ng-template>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns:displayedColumns" (click)="clickRow(row)" class="rowTable"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons aria-label="Selecciona una pagina">
+
+        </mat-paginator>
+
+    </div>
+</section>

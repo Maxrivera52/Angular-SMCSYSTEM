@@ -20,6 +20,8 @@ import { DialogSeccionComponent } from './dialog-seccion/dialog-seccion.componen
 import { SeccionModalComponent } from './seccion-modal/seccion-modal.component';
 import {MatSelectModule} from '@angular/material/select';
 import { CursoComponent } from './curso/curso.component';
+import { AnioescolarComponent } from './anioescolar/anioescolar.component';
+import { NivelComponent } from './nivel/nivel.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { CursoComponent } from './curso/curso.component';
     DialogSeccionComponent,
     SeccionModalComponent,
     CursoComponent,
+    AnioescolarComponent,
+    NivelComponent,
   ],
   imports: [
     CommonModule,

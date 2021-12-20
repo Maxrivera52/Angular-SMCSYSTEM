@@ -84,7 +84,7 @@ export class GradoComponent implements OnInit {
 
       (regExp.test(descripcion.value) ? this.updateValidGrado(descripcion.value.split(" "),gra)
       
-        : swal("Campo inválido", "Máximo 3 caracteres, no incluya más de un espacio en el campo descripcion", "error")
+        : swal("Campo inválido", "Mínimo 3 caracteres, no incluya más de un espacio en el campo descripcion", "error")
 
     )}, () => { })
   }
