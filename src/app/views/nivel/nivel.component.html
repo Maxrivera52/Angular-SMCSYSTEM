@@ -3,14 +3,14 @@
 <section class="full-box dashboard-contentPage">
     <app-top-bar></app-top-bar>
     <div class="text-center  headerModule">
-        <h2>Lista de Grados</h2>
+        <h2>Lista de Niveles</h2>
     </div>
     <div>
         <mat-form-field appearance="standard">
             <mat-label>Filtro</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
           </mat-form-field>
-        <button mat-stroked-button color="primary" class="mtbutton" (click)="newGrado()">
+        <button mat-stroked-button color="primary" class="mtbutton" (click)="newNivel()">
             <mat-icon>add</mat-icon>
         </button>
         
@@ -18,39 +18,24 @@
     <div>
         
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 tbl">
-            <ng-container matColumnDef="idgrado">
+            <ng-container matColumnDef="idnivel">
                 <th mat-header-cell *matHeaderCellDef="">ID</th>
-                <td mat-cell *matCellDef="let gra">{{gra.grado.idgrado}}</td>
+                <td mat-cell *matCellDef="let niv">{{niv.idnivel}}</td>
             </ng-container>
-            <ng-container matColumnDef="descripcion">
-                <th mat-header-cell *matHeaderCellDef>DESCRIPCION</th>
-                <td mat-cell *matCellDef="let gra">{{gra.grado.descripcion}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="nivel">
-                <th mat-header-cell *matHeaderCellDef>NIVEL</th>
-                <td mat-cell *matCellDef="let gra">{{gra.nivel.nombre}}</td>
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>NOMBRE</th>
+                <td mat-cell *matCellDef="let niv">{{niv.nombre}}</td>
             </ng-container>
             
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef>ESTADO</th>
-                <td mat-cell *matCellDef="let gra">
-                    <div *ngIf="gra.grado.estado==1; else desh"><span
+                <td mat-cell *matCellDef="let niv">
+                    <div *ngIf="niv.estado==1; else desh"><span
                             class="badge badge-success">Activo</span>
                     </div>
                     <ng-template #desh>Inactivo</ng-template>
                 </td>
             </ng-container>
-
-            <!--<ng-container matColumnDef="editar">
-                <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
-                <td mat-cell *matCellDef="let row">
-                    <button style="margin: 20px" mat-stroked-button color="warn" class="mtbutton">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-            -->
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns:displayedColumns" (click)="clickRow(row)" class="rowTable"></tr>

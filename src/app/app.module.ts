@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { ModelsModule } from './models/models.module';
 import { ServicesModule } from './services/services.module';
 import { ViewsModule } from './views/views.module';
-import { AlumnoComponent } from './views/alumno/alumno.component';
-import { GradoComponent } from './views/grado/grado.component';
 
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,19 +21,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { Routes, RouterModule} from '@angular/router';
-import { SeccionComponent } from './views/seccion/seccion.component';
 
-const routers:Routes=[
-  { path:'',redirectTo:'/alumno',pathMatch:'full'},
-  { path:'alumno', component:AlumnoComponent},
-  
-  { path:'',redirectTo:'/grado',pathMatch:'full'},
-  { path:'grado', component:GradoComponent},
 
-  { path:'',redirectTo:'/seccion',pathMatch:'full'},
-  { path:'seccion', component:SeccionComponent},
-
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +45,6 @@ const routers:Routes=[
     MatFormFieldModule,
     MatSnackBarModule,
     MatSelectModule,
-    RouterModule.forRoot(routers),
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule

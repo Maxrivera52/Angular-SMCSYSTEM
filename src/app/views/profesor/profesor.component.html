@@ -57,7 +57,7 @@
                     {{(profesor.nombreRol.charAt(0).toUpperCase()+profesor.nombreRol.slice(1))}}
                 </td>
             </ng-container>
-        -->
+            -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns:displayedColumns" (click)="clickRow(row)" class="rowTable"></tr>
         </table>

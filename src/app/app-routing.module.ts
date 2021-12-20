@@ -11,6 +11,8 @@ import { UsuariosComponent } from './views/usuarios/usuarios.component';
 import { ProfesorComponent } from './views/profesor/profesor.component';
 import { AdminGuard } from './guards/admin.guard';
 import { SeccionComponent } from './views/seccion/seccion.component';
+import { AnioescolarComponent } from './views/anioescolar/anioescolar.component';
+import { NivelComponent } from './views/nivel/nivel.component';
 
 const routes: Routes = [
   { path: '', component:LoginComponent },
@@ -21,7 +23,9 @@ const routes: Routes = [
   { path: 'profesor',canActivate:[AdminGuard],  component:ProfesorComponent },
   {path: 'grado', component:GradoComponent},
   {path: 'seccion', component:SeccionComponent},
-  {path: 'curso', component:CursoComponent}
+  {path: 'curso', component:CursoComponent},
+  {path: 'anio', component:AnioescolarComponent},
+  {path: 'nivel', component:NivelComponent}
 ];
 
 @NgModule({
