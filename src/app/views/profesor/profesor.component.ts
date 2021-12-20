@@ -47,7 +47,6 @@ export class ProfesorComponent implements OnInit {
         data.profesor.apellido + data.profesor.telefono + 
         data.usuario.correo + data.profesor.dni;
       dataStr = dataStr.toLowerCase();
-      console.log(dataStr);
       return dataStr.indexOf(filter) != -1;
     }
   }
@@ -117,7 +116,7 @@ export class ProfesorComponent implements OnInit {
 
       console.log(dni.value)
 
-      console.log(nombre.value + ", " + apellido.value);
+    console.log(nombre.value + ", " + apellido.value);
       console.log("" + regExpNames.test(nombre.value) + ", " + regExpNames.test(apellido.value));
 
       (regExpNames.test(nombre.value) && regExpNames.test(apellido.value)) ?
@@ -135,7 +134,7 @@ export class ProfesorComponent implements OnInit {
     proUs.profesor.apellido = apellido.reduce((acc, curr) => acc + " " + curr, "").trim();
     proUs.profesor.dni = dni;
     proUs.profesor.telefono = telefono;
-    proUs.usuario.nombre = nombre[0] + " " + apellido[0];
+//    proUs.usuario.nombre = nombre[0] + " " + apellido[0];
     proUs.usuario.correo = correo;
 
     this.userserv.save(proUs.usuario).subscribe({ complete: () => { console.log("use updated") } });
@@ -193,7 +192,6 @@ export class ProfesorComponent implements OnInit {
 
   isValidNewProfesor(nombre: string[], apellido: string[], correo: string, dni: string, telefono: string) {
     let usuario = new Usuario();
-    usuario.nombre = nombre[0] + " " + apellido[0];
     usuario.correo = correo;
     usuario.clave = dni;
     usuario.estado = "1";

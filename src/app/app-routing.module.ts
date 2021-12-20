@@ -9,6 +9,7 @@ import { GradoComponent } from './views/grado/grado.component';
 
 import { UsuariosComponent } from './views/usuarios/usuarios.component';
 import { ProfesorComponent } from './views/profesor/profesor.component';
+import { AdminGuard } from './guards/admin.guard';
 import { SeccionComponent } from './views/seccion/seccion.component';
 import { AnioescolarComponent } from './views/anioescolar/anioescolar.component';
 import { NivelComponent } from './views/nivel/nivel.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'home', component:HomeComponent },
   { path: 'alumno', component:AlumnoComponent},
   { path: 'usuarios', component:UsuariosComponent },
-  { path: 'profesor', component:ProfesorComponent },
+  { path: 'profesor',canActivate:[AdminGuard],  component:ProfesorComponent },
   {path: 'grado', component:GradoComponent},
   {path: 'seccion', component:SeccionComponent},
   {path: 'curso', component:CursoComponent},

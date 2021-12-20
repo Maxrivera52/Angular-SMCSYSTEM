@@ -9,29 +9,34 @@ import { Seccioncl } from '../models/seccioncl';
 export class SeccionService {
 
   seccionActualizar = new Subject<Seccioncl[]>();
-  private url: string = 'http://localhost:8070/rest_seccion';
+  private url: string = 'http://localhost:8070/seccion';
 
   constructor(private http: HttpClient) {}
 
   // LISTAR SECCION
   getAll(): Observable<Seccioncl[]> {
-    return this.http.get<Seccioncl[]>(this.url);
+    const params = `/listar`;
+    return this.http.get<Seccioncl[]>(this.url+params);
   }
   // CREAR SECCION
   create(seccion: Seccioncl): Observable<Seccioncl> {
-    return this.http.post<Seccioncl>(this.url, seccion);
+    const params = `/save`;
+    return this.http.post<Seccioncl>(this.url+params, seccion);
   }
   // BUSCAR SECCION
   get(idseccion: number): Observable<Seccioncl> {
-    return this.http.get<Seccioncl>(this.url + '/' + idseccion);
+    const params = `/find/${idseccion}`;
+    return this.http.get<Seccioncl>(this.url + params);
   }
 
   // MODIFICAR SECCION
   update(seccion: Seccioncl): Observable<Seccioncl> {
-    return this.http.put<Seccioncl>(this.url, seccion);
+    const params = `/update`;
+    return this.http.put<Seccioncl>(this.url+params, seccion);
   }
   // ELIMINAR SECCION
   delete(idseccion: number): Observable<Seccioncl> {
-    return this.http.delete<Seccioncl>(this.url + '/' + idseccion);
+    const params = `/delete/${idseccion}`;
+    return this.http.delete<Seccioncl>(this.url + params);
   }
 }

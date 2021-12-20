@@ -24,7 +24,7 @@ export class UsuariosComponent implements OnInit {
   listUsuario: Usuario[]=[];
   listUsuarioRol:UsuarioRol[]=[];
   listRol:Rol[]=[];
-  displayedColumns: string[]= ['id','nombre','correo','estado','rol'];
+  displayedColumns: string[]= ['id','correo','rol','estado'];
 
   @ViewChild(MatTable)
   table!: MatTable<any>;
@@ -79,7 +79,6 @@ export class UsuariosComponent implements OnInit {
       text:`
       <form>
         <select id=""class="form-control" disabled>${options}</select>
-        <input type="text" class="form-control" value="${usu.usuario.nombre}" placeholder="Nombre" disabled>
         <input type="text" id="correo" class="form-control" value="${usu.usuario.correo}" placeholder="Correo">
         <input type="password" id="oldpass" class="form-control" value="${usu.usuario.clave}" placeholder="Contraseña">
         <input type="password" id="newpass" class="form-control" placeholder="Confirmar nueva contraseña">
@@ -135,6 +134,7 @@ export class UsuariosComponent implements OnInit {
     })
   }
 
+  /*
   newUser(){
     let options ="";
     for(let rol of this.listRol){
@@ -155,5 +155,5 @@ export class UsuariosComponent implements OnInit {
       cancelButtonText:"Cancelar",
     });
   }
-
+*/
 }

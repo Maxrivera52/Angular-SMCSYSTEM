@@ -34,4 +34,11 @@ export class SprofesorService {
     const params = `/delete/${id}`;
     this.http.delete(this.url+params)
   }
+
+  ////
+  getByUser(id:number):Observable<Profesor>{
+    const params = `/iduser/${id}`;
+    return this.http.get<Profesor>(this.url+params);
+  }
+
 }
