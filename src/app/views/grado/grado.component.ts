@@ -87,7 +87,7 @@ export class GradoComponent implements OnInit {
     }
     selectniv+="</select>"
     swal({
-      title: "Nuevo Grado",
+      title: "Registrar Grado",
       text: `
       <form>
         ${selectniv}
@@ -145,8 +145,8 @@ export class GradoComponent implements OnInit {
         <input id="descripcion" type="text" class="form-control" placeholder="Ej: Primero" value="${grado.grado.descripcion}" required/>
       </form>`,
       showCancelButton: true,
-      confirmButtonColor: '#00a62c',
-      confirmButtonText: 'Guardar',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Actualizar',
       cancelButtonText: "Cancelar",
       allowOutsideClick: false,
     }).catch(swal.snoop).then(() => {

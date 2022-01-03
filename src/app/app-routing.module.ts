@@ -1,3 +1,4 @@
+import { HoraAccesoGuard } from './guards/hora-acceso.guard';
 import { CursoComponent } from './views/curso/curso.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,6 +14,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { SeccionComponent } from './views/seccion/seccion.component';
 import { AnioescolarComponent } from './views/anioescolar/anioescolar.component';
 import { NivelComponent } from './views/nivel/nivel.component';
+import { PeriodoComponent } from './views/periodo/periodo.component';
 
 const routes: Routes = [
   { path: '', component:LoginComponent },
@@ -25,7 +27,8 @@ const routes: Routes = [
   {path: 'seccion', component:SeccionComponent},
   {path: 'curso', component:CursoComponent},
   {path: 'anio', component:AnioescolarComponent},
-  {path: 'nivel', component:NivelComponent}
+  {path: 'nivel', component:NivelComponent}, 
+  {path: 'periodo', component:PeriodoComponent, canActivate:[HoraAccesoGuard]}
 ];
 
 @NgModule({

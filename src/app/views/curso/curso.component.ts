@@ -1,3 +1,5 @@
+import { GradoService } from 'src/app/services/grado.service';
+import { Gradocl } from 'src/app/models/gradocl';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -5,6 +7,11 @@ import { Cursocl } from 'src/app/models/cursocl';
 import { CursoService } from 'src/app/services/curso.service';
 
 declare var swal: any;
+
+class CursoGra {
+  curso: Cursocl = new Cursocl();
+  grado:Gradocl = new Gradocl();
+}
 
 @Component({
   selector: 'app-curso',
@@ -14,8 +21,10 @@ declare var swal: any;
 export class CursoComponent implements OnInit {
 
   listCurso: Cursocl[] = [];
-  displayedColumns: string[] = ['idcurso', 'descripcion', 'estado'];
-  dataSource = new MatTableDataSource(this.listCurso);
+  listGrado: Gradocl[] = [];
+  listCursoGra: CursoGra[] = [];
+  displayedColumns: string[] = ['idcurso', 'descripcion', 'grado', 'estado'];
+  dataSource = new MatTableDataSource(this.listCursoGra);
 
   @ViewChild(MatTable)
   table!: MatTable<any>;
@@ -23,7 +32,7 @@ export class CursoComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(private curserv: CursoService, private changdet: ChangeDetectorRef) {
+  constructor(private curserv: CursoService, private graserv: GradoService, private changdet: ChangeDetectorRef) {
     this.assignFilterPredicate();
   }
 
@@ -33,8 +42,8 @@ export class CursoComponent implements OnInit {
 
   assignFilterPredicate(){
     this.dataSource.filterPredicate = (data, filter) => {
-      let dataStr = data.idcurso +
-        data.descripcion;
+      let dataStr = data.curso.idcurso +
+        data.curso.descripcion + data.grado.descripcion;
       dataStr = dataStr.toLowerCase();
       console.log(dataStr);
       return dataStr.indexOf(filter) != -1;
@@ -47,66 +56,44 @@ export class CursoComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  load() {
+  load(){
     this.listCurso = [];
-    this.curserv.getAll().subscribe({
-      next: (e) => { this.listCurso = e },
-      error: () => { console.error("Error al recuperar lista de cursos") },
-      complete: () => {
-        this.dataSource = new MatTableDataSource(this.listCurso);
-        this.assignFilterPredicate();
-        this.table.renderRows();
-        
+    this.listGrado = [];
+    this.listCursoGra= [];
+    this.graserv.getAll().subscribe({
+      next: (grados)=>{
+        this.listGrado = grados;
+        this.curserv.getAll().subscribe({
+          next: (cursos)=>{
+            cursos.forEach(el=>{
+              let curGra = new CursoGra();
+              curGra.curso = el;
+              curGra.grado = this.listGrado.filter(x=>x.idgrado == el.idgrado)[0];
+              this.listCursoGra.push(curGra);
+            });
+            this.dataSource = new MatTableDataSource(this.listCursoGra);
+            this.assignFilterPredicate();
+            this.table.renderRows();
+          }
+        });
       }
     });
-
+ 
   }
 
-  clickRow(cur: Cursocl) {
-    console.log(cur);
-    swal({
-      title: "Actualizar Curso",
-      text: `
-      <form>
-        <input id="descripcion" type="text" value="${cur.descripcion}" class="form-control" placeholder="Descripcion" required/>
-      </form>`,
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Actualizar',
-      cancelButtonText: "Cancelar",
-      allowOutsideClick: false,
-    }).catch(swal.snoop).then(() => {
-      const descripcion = <HTMLInputElement>document.getElementById("descripcion");
 
-      let regExp = new RegExp(/^[a-zÀ-ÿ]+ {0,2}[a-zÀ-ÿ]*$/, "i");
-
-      console.log(descripcion.value);
-
-      (regExp.test(descripcion.value) ? this.updateValidCurso(descripcion.value.split(" "),cur)
-      
-        : swal("Campo inválido", "No incluya números y más de un espacio en el campo descripcion", "error")
-
-    )}, () => { })
-  }
-
-  updateValidCurso(descripcion: string[], curs: Cursocl) {
-    curs.descripcion = descripcion.reduce((acc, curr) => acc + " " + curr, "").trim();
-
-    this.curserv.update(curs).subscribe({
-      next: () => {
-        swal("Éxito", "El registro del curso se actualizó satisfactoriamente.", "success");
-        this.load();
-      }
-    });
-  }
-
-  newCurso() {
+  newCurso(){
+    let selectgra= "<select id='selectgra' class='form-control'><option value=''>Seleccione un grado</option>";
+    for(let gra of this.listGrado){
+      selectgra+=`<option value='${gra.idgrado}'>${gra.descripcion}</option>`;
+    }
+    selectgra+="</select>"
     swal({
       title: "Registrar Curso",
       text: `
       <form>
-        <input id="descripcion" type="text" class="form-control" placeholder="Descripcion" required/>
-        
+        ${selectgra}
+        <input id="descripcion" type="text" class="form-control" placeholder="Ej: Comunicacion" required/>
       </form>`,
       showCancelButton: true,
       confirmButtonColor: '#00a62c',
@@ -114,31 +101,80 @@ export class CursoComponent implements OnInit {
       cancelButtonText: "Cancelar",
       allowOutsideClick: false,
     }).catch(swal.snoop).then(() => {
-      const descripcion = <HTMLInputElement>document.getElementById("descripcion");
+      const grado = <HTMLSelectElement>document.getElementById("selectgra");
+      const desc = <HTMLInputElement>document.getElementById("descripcion");
 
-      let regExp = new RegExp(/^[a-zÀ-ÿ]+ {0,2}[a-zÀ-ÿ]*$/, "i");
-
-      console.log(descripcion.value)
-      console.log("" + regExp.test(descripcion.value));
-
-      (regExp.test(descripcion.value) ? this.isValidNewCurso(descripcion.value.split(" "))
+      let regExpNames = new RegExp(/[a-zÀ-ÿ]{2,50}[a-zÀ-ÿ]/, "gi");
       
-        : swal("Campo inválido", "No incluya números y más de un espacio en el campo descripcion", "error")
+      (regExpNames.test(desc.value)) ? grado.value!=""?
+          this.isvalidewNivel(grado.value,desc.value.toUpperCase())
+          : swal("Campo inválido", "Seleccione un grado", "error").then(()=>{this.newCurso.call(this)})
+        : swal("Campo inválido", "Mínimos 3 caracteres, No incluya números y más de un espacio en el campo descripcion", "error").then(()=>{this.newCurso.call(this)});
 
-    )}, () => { })
+    }, () => { });
+  }
+
+  isvalidewNivel(idgrado:string,curso:string){
+    let newCurso = new Cursocl();
+    newCurso.estado = '1',
+    newCurso.idgrado = Number(idgrado);
+    newCurso.descripcion = curso;
+    this.curserv.create(newCurso).subscribe({
+      next:(nsecc)=>{
+        console.log(nsecc);
+        swal("Registro exitoso","Se registró satisfactoriamente","success");
+        this.load();
+      }
+    });
 
   }
 
-  isValidNewCurso(descripcion: string[]) {
-        let newCur: Cursocl = new Cursocl();
-        newCur.descripcion = descripcion.reduce((acc, next) => acc + " " + next, "").trim();
-        newCur.estado = "1";
-        this.curserv.create(newCur).subscribe({
-          next: (cur: Cursocl) => { if (cur != null) swal("Éxito", "El curso fue registrado satisfactoriamente", "success") },
-          error: () => { swal("Lástima", "Ocurrió un error", "error"); console.log(newCur) },
-          complete: () => {
-            this.load();
-          }
-        });
+  clickRow(curso:CursoGra){
+
+    let selectgra= "<select id='selectgra' class='form-control'><option value=''>Seleccione un grado</option>";
+    for(let gra of this.listGrado){
+      if(curso.grado.idgrado == gra.idgrado)
+      selectgra+=`<option value='${gra.idgrado}' selected>${gra.descripcion}</option>`;
+      else selectgra+=`<option value='${gra.idgrado}'>${gra.descripcion}</option>`;
+    }
+    selectgra+="</select>"
+    swal({
+      title: "Actualizar Curso",
+      text: `
+      <form>
+        ${selectgra}
+        <input id="descripcion" type="text" class="form-control" placeholder="Ej: Comunicación" value="${curso.curso.descripcion}" required/>
+      </form>`,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Actualizar',
+      cancelButtonText: "Cancelar",
+      allowOutsideClick: false,
+    }).catch(swal.snoop).then(() => {
+      const grado = <HTMLSelectElement>document.getElementById("selectgra");
+      const desc = <HTMLInputElement>document.getElementById("descripcion");
+
+      let regExpNames = new RegExp(/[a-zÀ-ÿ]{2,50}[a-zÀ-ÿ]/, "gi");
+      
+      (regExpNames.test(desc.value)) ? grado.value!=""?
+          this.updateCurso(grado.value,desc.value.toUpperCase(),curso)
+          : swal("Campo inválido", "Seleccione un grado", "error").then(()=>{this.clickRow.call(this,curso)})
+        : swal("Campo inválido", "Mínimo 3 caracteres, No incluya números y más de un espacio en el campo descripción", "error").then(()=>{this.clickRow.call(this,curso)});
+
+    }, () => { });
+  }
+
+  updateCurso(grado:string,desc:string,curso:CursoGra){
+    curso.curso.idgrado = Number(grado);
+    curso.curso.descripcion = desc;
+    this.curserv.update(curso.curso).subscribe({
+      next:(ncur)=>{
+        console.log(ncur);
+        swal("Actualización exitosa","Se actualizó satisfactoriamente","success");
+        this.load();
       }
+    });
+  }
+
+  
 }

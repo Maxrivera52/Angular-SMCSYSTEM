@@ -21,6 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { CursoComponent } from './curso/curso.component';
 import { AnioescolarComponent } from './anioescolar/anioescolar.component';
 import { NivelComponent } from './nivel/nivel.component';
+import { PeriodoComponent } from './periodo/periodo.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { NivelComponent } from './nivel/nivel.component';
     CursoComponent,
     AnioescolarComponent,
     NivelComponent,
+    PeriodoComponent,
   ],
   imports: [
     CommonModule,

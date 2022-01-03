@@ -85,7 +85,7 @@ export class AnioescolarComponent implements OnInit {
       const fechainicio = <HTMLInputElement>document.getElementById("fechainicio");
       const fechacierre = <HTMLInputElement>document.getElementById("fechacierre");
 
-      let regExpNames = new RegExp(/^(202[0-9]|203[0-9]|204[0-9]|205[0])$/);
+      let regExpNames = new RegExp(/^(201[0-9]|202[0-9]|203[0-9]|204[0-9]|205[0])$/);
       //let regExpFechas = new RegExp(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(202[0-9]|203[0-9]|204[0-9]|205[0])$/);
 
       console.log(nombre.value);
@@ -97,7 +97,7 @@ export class AnioescolarComponent implements OnInit {
 
       (regExpNames.test(nombre.value)) ? this.updateValidAnio(nombre.value, fechainicio.value, fechacierre.value, anio)
       //regExpFechas.test(fechainicio.value) && regExpFechas.test(fechacierre.value) ? this.updateValidAnio(nombre.value, fechainicio.value, fechacierre.value, anio)
-        : swal("Campo inválido", "Verifique qué el año sea un número entre el rango de 2020 - 2050", "error")
+        : swal("Campo inválido", "Verifique qué el año sea un número entre el rango de 2010 - 2050", "error")
         //: swal("Campo inválido", "No incluya letras y más de un espacio en los campos fecha de inicio y fecha de cierre", "error");
 
     }, () => { });
@@ -135,7 +135,7 @@ export class AnioescolarComponent implements OnInit {
       const fechainicio = <HTMLInputElement>document.getElementById("fechainicio");
       const fechacierre = <HTMLInputElement>document.getElementById("fechacierre");
 
-      let regExpNames = new RegExp(/^(202[0-9]|203[0-9]|204[0-9]|205[0])$/);
+      let regExpNames = new RegExp(/^(201[0-9]|202[0-9]|203[0-9]|204[0-9]|205[0])$/);
       //let regExpFechas = new RegExp(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(202[0-9]|203[0-9]|204[0-9]|205[0])$/);
 
       console.log(nombre.value);
@@ -147,7 +147,7 @@ export class AnioescolarComponent implements OnInit {
       (regExpNames.test(nombre.value)) ? this.isValidNewAnio(nombre.value, fechainicio.value, fechacierre.value)
         //regExpFechas.test(fechainicio.value) && regExpFechas.test(fechacierre.value) ? this.isValidNewAnio(nombre.value, fechainicio.value, fechacierre.value)
         //: swal("Campo inválido", "No incluya letras ni caracteres especiales en los campos, fecha de inicio y fecha de cierre", "error")
-        : swal("Campo inválido", "Verifique qué el año sea un número entre el rango de 2020 - 2050", "error");
+        : swal("Campo inválido", "Verifique qué el año sea un número entre el rango de 2010 - 2050", "error");
     }, () => { });
 
   }

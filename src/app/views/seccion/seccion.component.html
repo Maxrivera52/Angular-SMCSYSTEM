@@ -29,6 +29,10 @@
                 <th mat-header-cell *matHeaderCellDef>GRADO</th>
                 <td mat-cell *matCellDef="let sec">{{sec.grado.descripcion}}</td>
             </ng-container>
+            <ng-container matColumnDef="nivel">
+                <th mat-header-cell *matHeaderCellDef>NIVEL</th>
+                <td mat-cell *matCellDef="let sec">{{sec.grado.idnivel}}</td>
+            </ng-container>
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef>ESTADO</th>
                 <td mat-cell *matCellDef="let sec">

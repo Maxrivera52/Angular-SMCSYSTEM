@@ -3,38 +3,46 @@
 <section class="full-box dashboard-contentPage">
     <app-top-bar></app-top-bar>
     <div class="text-center  headerModule">
-        <h2>Lista de Cursos</h2>
+        <h2>Lista de Periodos Escolares</h2>
     </div>
     <div>
         <mat-form-field appearance="standard">
             <mat-label>Filtro</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
-          </mat-form-field>
-        <button mat-stroked-button color="primary" class="mtbutton" (click)="newCurso()">
+        </mat-form-field>
+        <button mat-stroked-button color="primary" class="mtbutton" (click)="newPeriodo()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
     <div>
         
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 tbl">
-            <ng-container matColumnDef="idcurso">
+            <ng-container matColumnDef="idperiodo">
                 <th mat-header-cell *matHeaderCellDef="">ID</th>
-                <td mat-cell *matCellDef="let cur">{{cur.curso.idcurso}}</td>
+                <td mat-cell *matCellDef="let per">{{per.periodo.idperiodo}}</td>
             </ng-container>
-            <ng-container matColumnDef="descripcion">
-                <th mat-header-cell *matHeaderCellDef>DESCRIPCION</th>
-                <td mat-cell *matCellDef="let cur">{{cur.curso.descripcion}}</td>
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>Periodo</th>
+                <td mat-cell *matCellDef="let per">{{per.periodo.nombre}}</td>
+            </ng-container>
+            <ng-container matColumnDef="fechainicio">
+                <th mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
+                <td mat-cell *matCellDef="let per">{{per.periodo.fechainicio}}</td>
+            </ng-container>
+            <ng-container matColumnDef="fechacierre">
+                <th mat-header-cell *matHeaderCellDef>Fecha de Cierre</th>
+                <td mat-cell *matCellDef="let per">{{per.periodo.fechacierre}}</td>
             </ng-container>
 
-            <ng-container matColumnDef="grado">
-                <th mat-header-cell *matHeaderCellDef>GRADO</th>
-                <td mat-cell *matCellDef="let cur">{{cur.grado.descripcion}}</td>
+            <ng-container matColumnDef="anio">
+                <th mat-header-cell *matHeaderCellDef>Año</th>
+                <td mat-cell *matCellDef="let per">{{per.anio.nombre}}</td>
             </ng-container>
-            
+
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef>ESTADO</th>
-                <td mat-cell *matCellDef="let cur">
-                    <div *ngIf="cur.curso.estado==1; else desh"><span
+                <td mat-cell *matCellDef="let per">
+                    <div *ngIf="per.periodo.estado==1; else desh"><span
                             class="badge badge-success">Activo</span>
                     </div>
                     <ng-template #desh>Inactivo</ng-template>
@@ -49,3 +57,4 @@
 
     </div>
 </section>
+

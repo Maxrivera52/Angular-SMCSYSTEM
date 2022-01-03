@@ -79,7 +79,7 @@ export class NivelComponent implements OnInit {
     }).catch(swal.snoop).then(() => {
       const nombre = <HTMLInputElement>document.getElementById("nombre");
 
-      let regExp = new RegExp(/^[a-zÀ-ÿ]+ {0,2}[a-zÀ-ÿ]*$/, "i");
+      let regExp = new RegExp(/^[a-zÀ-ÿ]{3,30}[a-zÀ-ÿ]*$/, "i");
 
       console.log(nombre.value);
 
@@ -117,7 +117,7 @@ export class NivelComponent implements OnInit {
     }).catch(swal.snoop).then(() => {
       const nombre = <HTMLInputElement>document.getElementById("nombre");
 
-      let regExp = new RegExp(/^[a-zÀ-ÿ]+ {0,2}[a-zÀ-ÿ]*$/, "i");
+      let regExp = new RegExp(/^[a-zÀ-ÿ]{3,30}[a-zÀ-ÿ]*$/, "i");
 
       console.log(nombre.value)
       console.log("" + regExp.test(nombre.value));

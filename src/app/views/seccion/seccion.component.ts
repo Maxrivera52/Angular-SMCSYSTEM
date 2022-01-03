@@ -25,7 +25,7 @@ export class SeccionComponent implements OnInit {
   listSeccionGrade:seccionGrado[] = [];
   listgrades: Gradocl[] = [];
 
-  displayedColumns: string[] = ['idseccion', 'descripcion', 'grado', 'estado'];
+  displayedColumns: string[] = ['idseccion', 'descripcion', 'nivel', 'grado', 'estado'];
   dataSource = new MatTableDataSource(this.listSeccionGrade);
 
 
@@ -86,7 +86,7 @@ export class SeccionComponent implements OnInit {
     }
     selectgrad+="</select>"
     swal({
-      title: "Nueva Sección",
+      title: "Registrar Sección",
       text: `
       <form>
         ${selectgrad}
@@ -136,15 +136,15 @@ export class SeccionComponent implements OnInit {
     }
     selectgrad+="</select>"
     swal({
-      title: "Nueva Sección",
+      title: "Actualizar Sección",
       text: `
       <form>
         ${selectgrad}
         <input id="descripcion" type="text" class="form-control" placeholder="Ej: A12" value="${seccion.seccion.descripcion}" required/>
       </form>`,
       showCancelButton: true,
-      confirmButtonColor: '#00a62c',
-      confirmButtonText: 'Guardar',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Actualizar',
       cancelButtonText: "Cancelar",
       allowOutsideClick: false,
     }).catch(swal.snoop).then(() => {
