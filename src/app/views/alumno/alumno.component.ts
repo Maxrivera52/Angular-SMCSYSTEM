@@ -147,11 +147,7 @@ export class AlumnoComponent implements OnInit {
           : swal("Campo inválido", "Verifique qué el numero telefónico esté bien escrito, y de ser posible asemejarse a \"+51 987654321\"", "error")
           : swal("Campo inválido", "Ingrese un correo electrónico personal válido", "error")
           : swal("Campo inválido", "El DNI debe contener unicamente 8 dígitos numéricos", "error")
-<<<<<<< HEAD
-        : swal("Campo inválido", "No incluya números y más de un espacio en los campos nombres y apellidos", "error");
-=======
-        : swal("Campo inválido", "No incluya números y más de un espacio en los campos nombres y apellidos", "error");                 
->>>>>>> a2c445fc4c13d1138fd59589211d7c835fd4e56b
+          : swal("Campo inválido", "No incluya números y más de un espacio en los campos nombres y apellidos", "error");
     }, () => { });
   }
 
