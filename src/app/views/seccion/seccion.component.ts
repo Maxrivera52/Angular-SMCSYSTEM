@@ -101,7 +101,7 @@ export class SeccionComponent implements OnInit {
       const grado = <HTMLSelectElement>document.getElementById("selectgrad");
       const desc = <HTMLInputElement>document.getElementById("descripcion");
 
-      let regExpNames = new RegExp(/^\w+$/, "i");
+      let regExpNames = new RegExp(/^\w$/, "i");
       
       (regExpNames.test(desc.value)) ? grado.value!=""?
           this.isvalidewSection(grado.value,desc.value.toUpperCase())

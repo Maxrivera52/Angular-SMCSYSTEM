@@ -15,7 +15,7 @@
             <ul class="full-box list-unstyled text-center">
                 <li>
                     <a >
-                        <i class="zmdi zmdi-settings"></i>
+                        <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
                     </a>
                 </li>
                 <li>
@@ -28,7 +28,7 @@
         <!-- SideBar Menu -->
         <ul class="list-unstyled full-box dashboard-sideBar-Menu"*ngIf="sessionStorage.getItem('rol')=='administrador'">
             <li>
-                <a [routerLink]="['/home']">
+                <a href="/home">
                     <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
                 </a>
             </li>
@@ -64,7 +64,7 @@
                         <a href="admin.html"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Administradores</a>
                     </li>
                     <li>
-                        <a href="profesor"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Maestros</a>
+                        <a href="/profesor"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Docentes</a>
                     </li>
                     <li>
                         <a href="alumno"><i class="zmdi zmdi-face zmdi-hc-fw"></i> Estudiantes</a>
@@ -84,6 +84,20 @@
                     </li>
                     <li>
                         <a href="periodo"><i class="zmdi zmdi-graduation-cap"></i> Periodo Escolar</a>
+
+                        <a href="/alumno"><i class="zmdi zmdi-face zmdi-hc-fw"></i> Estudiantes</a>
+                    </li>
+                    <li>
+                        <a href="/grado"><i class="zmdi zmdi-graduation-cap"></i> Grados</a>
+                    </li>
+                    <li>
+                        <a href="/seccion"><i class="zmdi zmdi-format-list-bulleted"></i> Secciones</a>
+                    </li>
+                    <li>
+                        <a href="/anio"><i class="zmdi zmdi-calendar-alt"></i> Año escolar</a>
+                    </li>
+                    <li>
+                        <a href="/nivel"><i class="zmdi zmdi-archive"></i> Nivel escolar</a>
                     </li>
                     <li>
                         <a href="representative.html"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i>
@@ -92,6 +106,8 @@
                     </li>
                     <li>
                         <a href="usuarios" ><i class="zmdi zmdi-account zmdi-hc-fw"></i> Usuarios
+
+                        <a href="/usuarios" ><i class="zmdi zmdi-account zmdi-hc-fw"></i> Usuarios
                         </a>
                     </li>
                 </ul>

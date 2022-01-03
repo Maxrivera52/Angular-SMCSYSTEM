@@ -9,7 +9,8 @@ export class AdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let rolcookie = document.cookie.split(";")[2].split("=")[1];
+    //let rolcookie = document.cookie.split(";")[2].split("=")[1];
+    let rolcookie = sessionStorage.getItem("rol");
     if(rolcookie=="administrador") return true;
     else return false;
   }
