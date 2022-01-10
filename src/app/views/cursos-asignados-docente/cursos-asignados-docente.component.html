@@ -1,0 +1,48 @@
+<app-side-bar></app-side-bar>
+<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+    <app-top-bar></app-top-bar>
+    <div class="text-center  headerModule">
+        <h2>Cursos asignados</h2>
+    </div>
+    <div>
+        <mat-accordion>
+            <mat-expansion-panel *ngIf="listPrimary.length>0">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Primaria
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Nivel Primaria
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="container-card">
+                    <a class="card" *ngFor="let el of listPrimaryMixed">
+                        <p><b>Curso:&nbsp;</b>{{el.detallecursoDocente.idcurso.descripcion}}</p>
+                        <p><b>Grado:&nbsp;</b>{{el.grado.descripcion}}</p>
+                        <p><b>Sección:&nbsp;</b>{{el.seccion.descripcion}}</p>
+                    </a>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="listSecondary.length>0">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Secundaria
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Nivel Secundaria
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="container-card">
+                    <a class="card" *ngFor="let el of listSecondaryMixed">
+                        <p><b>Curso:&nbsp;</b>{{el.detallecursoDocente.idcurso.descripcion}}</p>
+                        <p><b>Grado:&nbsp;</b>{{el.grado.descripcion}}</p>
+                        <p><b>Sección:&nbsp;</b>{{el.seccion.descripcion}}</p>
+                    </a>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+
+</section>

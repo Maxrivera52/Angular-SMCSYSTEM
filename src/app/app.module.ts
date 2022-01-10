@@ -17,8 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { Routes, RouterModule} from '@angular/router';
 
@@ -37,7 +36,6 @@ import { Routes, RouterModule} from '@angular/router';
     ServicesModule,
     BrowserAnimationsModule,
     HttpClientModule, 
-    
     FormsModule,
     MatDialogModule,
     MatInputModule,
@@ -47,7 +45,7 @@ import { Routes, RouterModule} from '@angular/router';
     MatSelectModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

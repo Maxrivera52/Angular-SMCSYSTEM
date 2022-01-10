@@ -1,0 +1,31 @@
+.tbl{
+    width: 100%;
+}
+.headerModule{
+    padding: 25px 10px;
+}
+.headerModule > h2{
+    font-size:40px;
+}
+
+.rowTable:hover{
+    cursor: pointer;
+}
+.mtbutton{
+    margin-left: 90%;
+}
+
+.mat-form-field{
+    width: 80%;
+    margin-left:10%;
+}
+
+::ng-deep .select-list{
+    width: 100%;
+}
+
+::ng-deep .date-range{
+    display: flex;
+    justify-content: space-between;
+    
+}

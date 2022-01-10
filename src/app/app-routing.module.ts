@@ -15,20 +15,24 @@ import { SeccionComponent } from './views/seccion/seccion.component';
 import { AnioescolarComponent } from './views/anioescolar/anioescolar.component';
 import { NivelComponent } from './views/nivel/nivel.component';
 import { PeriodoComponent } from './views/periodo/periodo.component';
+import { DetalleCursoDocenteComponent } from './views/detalle-curso-docente/detalle-curso-docente.component';
+import { CursosAsignadosDocenteComponent } from './views/cursos-asignados-docente/cursos-asignados-docente.component';
 
 const routes: Routes = [
-  { path: '', component:LoginComponent },
-  { path: 'login', component:LoginComponent },
-  { path: 'home', component:HomeComponent },
-  { path: 'alumno', component:AlumnoComponent},
-  { path: 'usuarios', component:UsuariosComponent },
-  { path: 'profesor',canActivate:[AdminGuard],  component:ProfesorComponent },
-  {path: 'grado', component:GradoComponent},
-  {path: 'seccion', component:SeccionComponent},
-  {path: 'curso', component:CursoComponent},
-  {path: 'anio', component:AnioescolarComponent},
-  {path: 'nivel', component:NivelComponent}, 
-  {path: 'periodo', component:PeriodoComponent, canActivate:[HoraAccesoGuard]}
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'alumno', canActivate: [AdminGuard], component: AlumnoComponent },
+  { path: 'usuarios', canActivate: [AdminGuard], component: UsuariosComponent },
+  { path: 'profesor', canActivate: [AdminGuard], component: ProfesorComponent },
+  { path: 'grado', canActivate: [AdminGuard], component: GradoComponent },
+  { path: 'seccion', canActivate: [AdminGuard], component: SeccionComponent },
+  { path: 'curso', canActivate: [AdminGuard], component: CursoComponent },
+  { path: 'anio', canActivate: [AdminGuard], component: AnioescolarComponent },
+  { path: 'nivel', canActivate: [AdminGuard], component: NivelComponent },
+  { path: 'periodo', component: PeriodoComponent, canActivate: [HoraAccesoGuard,AdminGuard] },
+  { path: 'detalleCursoDocente', canActivate: [AdminGuard],component:DetalleCursoDocenteComponent },
+  { path: 'misCursosDocente', component:CursosAsignadosDocenteComponent }
 ];
 
 @NgModule({
