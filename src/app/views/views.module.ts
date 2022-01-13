@@ -17,12 +17,17 @@ import { MatInputModule } from '@angular/material/input';
 import { GradoComponent } from './grado/grado.component';
 import { SeccionComponent } from './seccion/seccion.component';
 import { DialogSeccionComponent } from './dialog-seccion/dialog-seccion.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { CursoComponent } from './curso/curso.component';
 import { AnioescolarComponent } from './anioescolar/anioescolar.component';
 import { NivelComponent } from './nivel/nivel.component';
 import { PeriodoComponent } from './periodo/periodo.component';
-
+import { DetalleCursoDocenteComponent, DialogDetalleCursoDocente } from './detalle-curso-docente/detalle-curso-docente.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { CursosAsignadosDocenteComponent } from './cursos-asignados-docente/cursos-asignados-docente.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +48,9 @@ import { PeriodoComponent } from './periodo/periodo.component';
     AnioescolarComponent,
     NivelComponent,
     PeriodoComponent,
+    DetalleCursoDocenteComponent,
+    DialogDetalleCursoDocente,
+    CursosAsignadosDocenteComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +62,11 @@ import { PeriodoComponent } from './periodo/periodo.component';
     MatIconModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
-  ]
+    MatSelectModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatExpansionModule
+  ],
 })
 export class ViewsModule { }

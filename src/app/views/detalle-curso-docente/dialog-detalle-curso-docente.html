@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Formulario de Docente</h2>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <mat-form-field class="select-list">
+      <mat-label>Curso</mat-label>
+      <mat-select  [(ngModel)]="data.detailCursoDocente.idcurso.idcurso">
+        <mat-option [value]="0">Seleccione una opción</mat-option>
+        <mat-option *ngFor="let it of data.listCursos" [value]="it.idcurso">{{it.descripcion}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="select-list">
+      <mat-label>Docente</mat-label>
+      <mat-select [(ngModel)]="data.detailCursoDocente.idprofesor.idprofesor">
+        <mat-option [value]="0">Seleccione una opción</mat-option>
+        <mat-option *ngFor="let it of data.listDocentes" [value]="it.idprofesor">{{(it.nombre+" "+it.apellido)}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="date-range">
+    <mat-form-field>
+      <mat-label>Fecha de Inicio</mat-label>
+      <input matInput [matDatepicker]="startpicker" name="startdate" [(ngModel)]="startdate">
+      <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+      <mat-datepicker #startpicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fecha de Finalización</mat-label>
+      <input matInput [matDatepicker]="endpicker" name="enddate" [(ngModel)]="enddate">
+      <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+      <mat-datepicker #endpicker></mat-datepicker>
+    </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <button mat-raised-button color="accent" (click)="submit()" cdkFocusInitial>Registrar</button>
+</mat-dialog-actions>

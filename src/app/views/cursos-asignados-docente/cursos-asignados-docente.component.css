@@ -1,0 +1,64 @@
+.tbl {
+  width: 100%;
+}
+.headerModule {
+  padding: 25px 10px;
+}
+.headerModule > h2 {
+  font-size: 40px;
+}
+
+.mtbutton {
+  margin-left: 90%;
+}
+
+.mat-form-field {
+  width: 80%;
+  margin-left: 10%;
+}
+
+::ng-deep .select-list {
+  width: 100%;
+}
+
+::ng-deep .date-range {
+  display: flex;
+  justify-content: space-between;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
+}
+p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+}
+.container-card {
+  min-height: 140px;
+  max-height: 140px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.card {
+  width: 20%;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px #ccc;
+  background-color: rgb(0, 10, 145);
+  color: rgb(230, 230, 230);
+  font-size: 15px;
+  transition: width 0.5s;
+  overflow: hidden;
+}
+
+.card:hover {
+  width: 25%;
+  background-color: rgb(36, 0, 194);
+  color: rgb(230, 230, 230);
+}
