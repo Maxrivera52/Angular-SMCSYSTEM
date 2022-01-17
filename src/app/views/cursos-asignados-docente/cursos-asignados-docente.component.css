@@ -62,3 +62,14 @@ p {
   background-color: rgb(36, 0, 194);
   color: rgb(230, 230, 230);
 }
+
+::ng-deep .btnOption{
+  margin: 30px;
+  width: 100%;
+  
+}
+
+a:hover,a:focus {
+  color: #00F;
+  text-decoration: none;
+}

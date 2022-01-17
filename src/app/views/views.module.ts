@@ -27,7 +27,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { CursosAsignadosDocenteComponent } from './cursos-asignados-docente/cursos-asignados-docente.component';
+import { CursosAsignadosDocenteComponent, DialogOpcionesCurso } from './cursos-asignados-docente/cursos-asignados-docente.component';
+import { AlumnosCursoDocenteComponent } from './alumnos-curso-docente/alumnos-curso-docente.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,9 @@ import { CursosAsignadosDocenteComponent } from './cursos-asignados-docente/curs
     PeriodoComponent,
     DetalleCursoDocenteComponent,
     DialogDetalleCursoDocente,
-    CursosAsignadosDocenteComponent
+    CursosAsignadosDocenteComponent,
+    DialogOpcionesCurso,
+    AlumnosCursoDocenteComponent
   ],
   imports: [
     CommonModule,

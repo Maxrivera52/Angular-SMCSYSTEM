@@ -17,6 +17,7 @@ import { NivelComponent } from './views/nivel/nivel.component';
 import { PeriodoComponent } from './views/periodo/periodo.component';
 import { DetalleCursoDocenteComponent } from './views/detalle-curso-docente/detalle-curso-docente.component';
 import { CursosAsignadosDocenteComponent } from './views/cursos-asignados-docente/cursos-asignados-docente.component';
+import { AlumnosCursoDocenteComponent } from './views/alumnos-curso-docente/alumnos-curso-docente.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'nivel', canActivate: [AdminGuard], component: NivelComponent },
   { path: 'periodo', component: PeriodoComponent, canActivate: [HoraAccesoGuard,AdminGuard] },
   { path: 'detalleCursoDocente', canActivate: [AdminGuard],component:DetalleCursoDocenteComponent },
-  { path: 'misCursosDocente', component:CursosAsignadosDocenteComponent }
+  { path: 'misCursosDocente', component:CursosAsignadosDocenteComponent },
+  { path: 'alumnosCurso/:idseccion/:idcurso', component:AlumnosCursoDocenteComponent }
 ];
 
 @NgModule({

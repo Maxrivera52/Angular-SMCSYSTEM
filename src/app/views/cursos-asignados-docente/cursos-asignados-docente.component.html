@@ -17,7 +17,7 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="container-card">
-                    <a class="card" *ngFor="let el of listPrimaryMixed">
+                    <a class="card" *ngFor="let el of listPrimaryMixed" (click)="openModal(el.seccion.idseccion,el.detallecursoDocente.idcurso.idcurso)">
                         <p><b>Curso:&nbsp;</b>{{el.detallecursoDocente.idcurso.descripcion}}</p>
                         <p><b>Grado:&nbsp;</b>{{el.grado.descripcion}}</p>
                         <p><b>Sección:&nbsp;</b>{{el.seccion.descripcion}}</p>
@@ -34,7 +34,7 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="container-card">
-                    <a class="card" *ngFor="let el of listSecondaryMixed">
+                    <a class="card" *ngFor="let el of listSecondaryMixed" (click)="openModal(el.seccion.idseccion,el.detallecursoDocente.idcurso.idcurso)">
                         <p><b>Curso:&nbsp;</b>{{el.detallecursoDocente.idcurso.descripcion}}</p>
                         <p><b>Grado:&nbsp;</b>{{el.grado.descripcion}}</p>
                         <p><b>Sección:&nbsp;</b>{{el.seccion.descripcion}}</p>

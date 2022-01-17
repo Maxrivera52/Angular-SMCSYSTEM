@@ -24,6 +24,9 @@ class AlumnoUsu {
 })
 export class AlumnoComponent implements OnInit {
 
+
+  title="Curso"
+
   listAlumno: Alumnocl[] = [];
   listAlumnoUsu: AlumnoUsu[] = [];
   listSeccion: Seccioncl[] = [];

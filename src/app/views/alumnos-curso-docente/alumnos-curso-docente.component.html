@@ -1,0 +1,41 @@
+<app-side-bar></app-side-bar>
+<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+    <app-top-bar></app-top-bar>
+    <div class="text-center  headerModule">
+        <h2>{{curso.descripcion}}&nbsp;-&nbsp;{{seccion.descripcion}}</h2>
+    </div>
+    <div>
+        <mat-form-field appearance="standard">
+            <mat-label>Filtro</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
+        </mat-form-field>
+    </div>
+    <div class="div-table">
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 tbl">
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>NOMBRE</th>
+                <td mat-cell *matCellDef="let alu">{{alu.nombre}}</td>
+            </ng-container>
+            <ng-container matColumnDef="apellido">
+                <th mat-header-cell *matHeaderCellDef>APELLIDO</th>
+                <td mat-cell *matCellDef="let alu">{{alu.apellido}}</td>
+            </ng-container>
+            <ng-container matColumnDef="dni">
+                <th mat-header-cell *matHeaderCellDef>DNI</th>
+                <td mat-cell *matCellDef="let alu">{{alu.dni}}</td>
+            </ng-container>
+            <ng-container matColumnDef="telefono">
+                <th mat-header-cell *matHeaderCellDef>TELÉFONO</th>
+                <td mat-cell *matCellDef="let alu">{{alu.telefono}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns:displayedColumns" (click)="clickRow(row)" class="rowTable"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons aria-label="Selecciona una pagina">
+
+        </mat-paginator>
+
+    </div>
+</section>

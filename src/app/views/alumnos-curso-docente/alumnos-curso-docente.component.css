@@ -1,0 +1,27 @@
+.div-table{
+    width: 80%;
+    margin: 20px auto;
+}
+
+.tbl{
+    width: 100%;
+}
+.headerModule{
+    margin-top: 30px;
+    padding: 25px 10px;
+}
+.headerModule > h2{
+    font-size:30px;
+}
+
+.rowTable:hover{
+    cursor: pointer;
+}
+.mtbutton{
+    margin-left: 90%;
+}
+
+.mat-form-field{
+    width: 80%;
+    margin-left:10%;
+}
