@@ -27,8 +27,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { CursosAsignadosDocenteComponent, DialogOpcionesCurso } from './cursos-asignados-docente/cursos-asignados-docente.component';
-import { AlumnosCursoDocenteComponent } from './alumnos-curso-docente/alumnos-curso-docente.component';
+import { CursosAsignadosDocenteComponent } from './cursos-asignados-docente/cursos-asignados-docente.component';
+import { AlumnosCursoDocenteComponent, CalificacionesAlumno } from './alumnos-curso-docente/alumnos-curso-docente.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,6 @@ import { AlumnosCursoDocenteComponent } from './alumnos-curso-docente/alumnos-cu
     ProfesorComponent,
     GradoComponent,
     SeccionComponent,
-
     CursoComponent,
     AnioescolarComponent,
     NivelComponent,
@@ -52,8 +52,8 @@ import { AlumnosCursoDocenteComponent } from './alumnos-curso-docente/alumnos-cu
     DetalleCursoDocenteComponent,
     DialogDetalleCursoDocente,
     CursosAsignadosDocenteComponent,
-    DialogOpcionesCurso,
-    AlumnosCursoDocenteComponent
+    AlumnosCursoDocenteComponent,
+    CalificacionesAlumno
   ],
   imports: [
     CommonModule,
@@ -69,7 +69,8 @@ import { AlumnosCursoDocenteComponent } from './alumnos-curso-docente/alumnos-cu
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ],
 })
 export class ViewsModule { }

@@ -24,6 +24,9 @@ export class PeriodoService {
   get(idperiodo: number): Observable<Periodocl> {
     return this.http.get<Periodocl>(this.url + '/' + idperiodo);
   }
+  getActives(): Observable<Periodocl[]> {
+    return this.http.get<Periodocl[]>(this.url + '/fechaMaxima');
+  }
 
   // MODIFICAR PERIODO
   update(periodo: Periodocl): Observable<Periodocl> {

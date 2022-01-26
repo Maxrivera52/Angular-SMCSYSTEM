@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DetalleCursoDocente } from 'src/app/models/detalle-curso-docente';
 import { Gradocl } from 'src/app/models/gradocl';
 import { Seccioncl } from 'src/app/models/seccioncl';
@@ -29,7 +29,7 @@ export interface dialogOptionsData{
 export class CursosAsignadosDocenteComponent implements OnInit,AfterViewInit {
 
   constructor(private SDetalleCD:SDetalleCursoDocentesService,private route:ActivatedRoute,
-    private SGrado:GradoService, private SSeccion:SeccionService,
+    private SGrado:GradoService, private SSeccion:SeccionService,private router:Router,
     private dialogButtonOptions:MatDialog) { }
   ngAfterViewInit(): void {
     
@@ -97,17 +97,20 @@ export class CursosAsignadosDocenteComponent implements OnInit,AfterViewInit {
   }
 
   openModal(idseccion:Number,idcurso:Number){
+
+    this.router.navigate([`alumnosCurso/${idseccion}/${idcurso}`])
+    /*
     let dialogRef = this.dialogButtonOptions.open(DialogOpcionesCurso,{
       data:{
         idseccion:idseccion,
         idcurso:idcurso
       }
     }); 
-    
+    */
   }
 
 }
-
+/*
 @Component({
   selector:"dialog-opciones-curso",
   templateUrl:"./dialogOpcionesCurso.html"
@@ -118,3 +121,4 @@ export class DialogOpcionesCurso{
 
   }
 }
+*/

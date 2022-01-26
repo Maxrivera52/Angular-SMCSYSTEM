@@ -1,0 +1,58 @@
+<mat-dialog-content>
+    <mat-tab-group>
+        <mat-tab label="Asignaciones">
+            <div class="form-container">
+                <form class="form-container-form">
+                    <mat-form-field>
+                        <mat-label>Periodo</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let it of periodos" [value]="it.idperiodo" (click)="selectlistOptionPeriodo(it.idperiodo)">{{it.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                </form>
+            </div>
+        </mat-tab>
+        <mat-tab label="Agregar Asignacion">
+            <div class="form-container">
+                <form class="form-container-form">
+                    <mat-form-field appareance="fill">
+                        <mat-label>Tipo de Asignación</mat-label>
+                        <mat-select [(ngModel)]="tarea.tipo" name="tipotarea">
+                            <mat-option value="1">Tarea</mat-option>
+                            <mat-option value="2">Evaluación</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="mat-form-field">
+                        <mat-label>Periodo de asignación</mat-label>
+                        <mat-select [(ngModel)]="periodo" name="periodos">
+                            <mat-option *ngFor="let it of periodos" [value]="it">{{ it.nombre }}</mat-option>
+                        </mat-select>    
+                    </mat-form-field>
+                    <mat-form-field class="mat-form-field">
+                        <mat-label>Título de la asignación</mat-label>
+                        <input matInput type="text" [(ngModel)]="tarea.titulo" name="titulo">
+                      </mat-form-field>
+                      
+                    <mat-form-field class="mat-form-field">
+                        <mat-label>Detalle de la asignación</mat-label>
+                        <textarea matInput type="text" [(ngModel)]="tarea.detalle" name="descripcion"></textarea>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Seleccione un rango fecha</mat-label>
+                        <mat-date-range-input [rangePicker]="picker">
+                            <input matStartDate [(ngModel)]="fechainicio" name="fechainicio" placeholder="Fecha inicial">
+                            <input matEndDate [(ngModel)]="fechafinal" name="fechafinal" placeholder="Fecha de fin">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+                    <div class="form-control-dialog">
+                        <button mat-raised-button color="accent" (click)="saveNewTarea()" class="mat-save-button">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</mat-dialog-content>

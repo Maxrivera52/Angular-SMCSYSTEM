@@ -21,7 +21,20 @@
     margin-left: 90%;
 }
 
-.mat-form-field{
+::ng-deep .mat-form-field,.form-control-dialog{
     width: 80%;
     margin-left:10%;
+}
+
+::ng-deep .form-control-dialog{
+    width: 80%;
+    margin-left:10%;
+    text-align: end;
+}
+::ng-deep .form-container-form{
+    margin: 10px 0;
+}
+
+::ng-deep .mat-save-button{
+    width: 15%;
 }
