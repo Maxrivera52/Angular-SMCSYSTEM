@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   clave:string="";
 
   ngOnInit(): void {
-
+    sessionStorage.clear();
   }
 
   login(){

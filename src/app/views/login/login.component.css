@@ -18,6 +18,9 @@ body{
 .form-group.label-floating{
     margin-top: 40px !important;
 }
+.form-group-a{
+    margin-top: 10px !important;
+}
 
 p > i{
     font-size: 11px;
