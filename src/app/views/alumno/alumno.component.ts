@@ -236,7 +236,7 @@ export class AlumnoComponent implements OnInit {
     newAlu.idseccion = seccionid;
 
     let newUsu:Usuario = new Usuario();
-    newUsu.idrol = 6;
+    newUsu.idrol.idrol = 6;
     newUsu.correo = correo
     newUsu.estado = "1"
     newUsu.clave = dni

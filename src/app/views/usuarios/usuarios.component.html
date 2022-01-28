@@ -9,10 +9,10 @@
 			
 		</div>
         <div>
-			<table mat-table [dataSource]="listUsuarioRol" class="mat-elevation-z2 tblUser">
+			<table mat-table [dataSource]="listUsuario" class="mat-elevation-z2 tblUser">
 				<ng-container matColumnDef="id">
 					<th mat-header-cell *matHeaderCellDef>ID</th>
-					<td mat-cell *matCellDef="let user">{{user.usuario.idusuario}}</td>
+					<td mat-cell *matCellDef="let user">{{user.idusuario}}</td>
 				</ng-container>
 				<!--
 				<ng-container matColumnDef="nombre">
@@ -22,7 +22,7 @@
 			-->
 				<ng-container matColumnDef="correo">
 					<th mat-header-cell *matHeaderCellDef>CORREO</th>
-					<td mat-cell *matCellDef="let user">{{user.usuario.correo}}</td>
+					<td mat-cell *matCellDef="let user">{{user.correo}}</td>
 				</ng-container>
 				<!--
 				<ng-container matColumnDef="clave">
@@ -32,12 +32,12 @@
 			-->
 			<ng-container matColumnDef="rol">
 				<th mat-header-cell *matHeaderCellDef>ROL</th>
-				<td mat-cell *matCellDef="let user">{{(user.nombreRol.charAt(0).toUpperCase()+user.nombreRol.slice(1))}}</td>
+				<td mat-cell *matCellDef="let user">{{(user.idrol.descripcion.charAt(0).toUpperCase()+user.idrol.descripcion.slice(1))}}</td>
 			</ng-container>
 				<ng-container matColumnDef="estado">
 					<th mat-header-cell *matHeaderCellDef>ESTADO</th>
 					<td mat-cell *matCellDef="let user">
-						<div *ngIf="user.usuario.estado==1; else desh"><span class="badge badge-success">Habilitado</span></div>
+						<div *ngIf="user.estado==1; else desh"><span class="badge badge-success">Habilitado</span></div>
 						<ng-template #desh>Deshabilitado</ng-template>
 					</td>
 				</ng-container>

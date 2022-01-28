@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'alumno', canActivate: [AdminGuard], component: AlumnoComponent },
-  { path: 'usuarios', canActivate: [AdminGuard], component: UsuariosComponent },
+  { path: 'usuarios',/* canActivate: [AdminGuard],*/ component: UsuariosComponent },
   { path: 'profesor', canActivate: [AdminGuard], component: ProfesorComponent },
   { path: 'grado', canActivate: [AdminGuard], component: GradoComponent },
   { path: 'seccion', canActivate: [AdminGuard], component: SeccionComponent },

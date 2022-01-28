@@ -37,30 +37,26 @@ export class LoginComponent implements OnInit {
   
     if (this.correo!=""&& this.clave!=""){
       this.service.loginUser(this.correo,this.clave).subscribe(res=>{
-        logres = res;
+        let usuario:Usuario = res;
         console.log(logres)
-        if(logres!=null){
-          this.rolservice.getById(res.idrol).subscribe({
-            next:(rol)=>{
-              if(rol.descripcion == "administrador"){
-                document.cookie = `username=ADMINISTRADOR`;
-                this.setData("Administrador principal",rol.descripcion);
-                window.location.href = "/home";
-              }else if(rol.descripcion == "docente"){
-                this.docenteService.getByUser(res.idusuario).subscribe({next:(prof)=>{
-                  this.setData(prof.nombre+" "+prof.apellido,rol.descripcion);
-                }});
-              }else if(rol.descripcion == "alumno"){
-                this.alumnoService.getByUser(res.idusuario).subscribe({
-                  next:(alu)=>{
-                    this.setData(alu.nombre +" "+ alu.apellido, rol.descripcion);
-                  }})
-              }
+        if(usuario!=null){
+          if(usuario.idrol.descripcion == "administrador"){
+            document.cookie = `username=ADMINISTRADOR`;
+            this.setData("Administrador principal",usuario.idrol.descripcion);
+            window.location.href = "/home";
+          }else if(usuario.idrol.descripcion == "docente"){
+            this.docenteService.getByUser(res.idusuario).subscribe({next:(prof)=>{
+              this.setData(prof.nombre+" "+prof.apellido,usuario.idrol.descripcion);
+            }});
+          }else if(usuario.idrol.descripcion == "alumno"){
+            this.alumnoService.getByUser(res.idusuario).subscribe({
+              next:(alu)=>{
+                this.setData(alu.nombre +" "+ alu.apellido,usuario.idrol.descripcion);
+              }})
+          }
 
-              //
-              window.location.href = "/home";
-            }
-          });
+          //
+          window.location.href = "/home";
           //this.router.navigate(["/home"]);
        
           //this.router.navigate()
