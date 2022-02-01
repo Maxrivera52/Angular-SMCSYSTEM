@@ -9,6 +9,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { SUsuarioService } from 'src/app/services/susuario.service';
 import { SeccionService } from 'src/app/services/seccion.service';
 import { Seccioncl } from 'src/app/models/seccioncl';
+import { filter } from 'rxjs';
 
 declare var swal: any;
 class AlumnoUsu {
@@ -23,6 +24,9 @@ class AlumnoUsu {
   styleUrls: ['./alumno.component.css']
 })
 export class AlumnoComponent implements OnInit {
+
+
+  title="Curso"
 
   listAlumno: Alumnocl[] = [];
   listAlumnoUsu: AlumnoUsu[] = [];
@@ -100,12 +104,22 @@ export class AlumnoComponent implements OnInit {
 
   clickRow(alu: AlumnoUsu) {
     console.log(alu);
+    let listPrim = this.listSeccion.filter(x=>x.idgrado.idnivel.nombre.toLowerCase()=="primaria");
+    let listSec = this.listSeccion.filter(x=>x.idgrado.idnivel.nombre.toLowerCase()=="secundaria");
     
     let select = "<select class='form-control' id='seccion'>";
-    for (let sec of this.listSeccion){
-      if (alu.alumno.idseccion == sec.idseccion) select+= `<option value='${sec.idseccion}' selected>${sec.descripcion}</option>`;
-      else select+= `<option value='${sec.idseccion}'>${sec.descripcion}</option>`;
+    select+="<optgroup label='Primaria'>"
+    for (let sec of listPrim){
+      if (alu.alumno.idseccion == sec.idseccion) select+= `<option value='${sec.idseccion}' selected>${sec.idgrado.descripcion}&nbsp;-&nbsp;${sec.descripcion}</option>`;
+      else select+= `<option value='${sec.idseccion}' selected>${sec.idgrado.descripcion}&nbsp;-&nbsp;${sec.descripcion}</option>`;
     }
+    select+="</optgroup>"
+    select+="<optgroup label='Secundaria'>"
+    for (let sec of listSec){
+      if (alu.alumno.idseccion == sec.idseccion) select+= `<option value='${sec.idseccion}' selected>${sec.idgrado.descripcion}&nbsp;-&nbsp;${sec.descripcion}</option>`;
+      else select+= `<option value='${sec.idseccion}' selected>${sec.idgrado.descripcion}&nbsp;-&nbsp;${sec.descripcion}</option>`;
+    }
+    select+="</optgroup>"
     select+="</select>"
     swal({
       title: "Actualizar Alumno",
@@ -233,7 +247,7 @@ export class AlumnoComponent implements OnInit {
     newAlu.idseccion = seccionid;
 
     let newUsu:Usuario = new Usuario();
-    newUsu.idrol = 6;
+    newUsu.idrol.idrol = 6;
     newUsu.correo = correo
     newUsu.estado = "1"
     newUsu.clave = dni

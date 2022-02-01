@@ -1,0 +1,15 @@
+body{
+    background-image: url(../../../assets/img/cover-recovery.jpg);
+    /*background: 50% 50% no-repeat;*/
+	background-size: cover;
+}
+
+.center-content{
+    width: 60%;
+    margin: 10% auto;
+    box-shadow: 5px 5px 20px rgb(173, 173, 173);
+}
+
+::ng-deep .stepper{
+    border-radius: 20px !important;
+}

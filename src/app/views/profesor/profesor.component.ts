@@ -195,7 +195,7 @@ export class ProfesorComponent implements OnInit {
     usuario.correo = correo;
     usuario.clave = dni;
     usuario.estado = "1";
-    usuario.idrol = 2;
+    usuario.idrol.idrol = 2;
     let returnUser: Usuario = new Usuario();
     this.userserv.save(usuario).subscribe({
       next: (user) => { returnUser = user }, complete: () => {

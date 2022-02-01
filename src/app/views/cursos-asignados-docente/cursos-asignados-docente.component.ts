@@ -1,90 +1,40 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DetalleCursoDocente } from 'src/app/models/detalle-curso-docente';
-import { Gradocl } from 'src/app/models/gradocl';
-import { Seccioncl } from 'src/app/models/seccioncl';
 import { GradoService } from 'src/app/services/grado.service';
 import { SDetalleCursoDocentesService } from 'src/app/services/s-detalle-curso-docentes.service';
 import { SeccionService } from 'src/app/services/seccion.service';
 
-export class detallecursosdocentegradoseccion{
-  detallecursoDocente:DetalleCursoDocente = new DetalleCursoDocente()
-  grado:Gradocl = new Gradocl()
-  seccion:Seccioncl = new Seccioncl()
-}
+declare const swal:any
 
 @Component({
   selector: 'app-cursos-asignados-docente',
   templateUrl: './cursos-asignados-docente.component.html',
   styleUrls: ['./cursos-asignados-docente.component.css']
 })
-export class CursosAsignadosDocenteComponent implements OnInit,AfterViewInit {
+export class CursosAsignadosDocenteComponent implements OnInit{
 
   constructor(private SDetalleCD:SDetalleCursoDocentesService,private route:ActivatedRoute,
-    private SGrado:GradoService, private SSeccion:SeccionService) { }
-  ngAfterViewInit(): void {
-    
-  }
+    private router:Router) { }
 
   listPrimary:DetalleCursoDocente[]=[]
-  listPrimaryMixed:detallecursosdocentegradoseccion[]=[]
-  listSecondaryMixed:detallecursosdocentegradoseccion[]=[]
   listSecondary:DetalleCursoDocente[]=[]
-  listSeccion:Seccioncl[]=[]
   panelOpenState = false;
 
   ngOnInit(): void {
     console.log("view initialized")
-    this.SSeccion.getAll().subscribe({next:(lsecc)=>{
-
-      this.SDetalleCD.getDetailByNivelDocente("Primaria",sessionStorage.getItem("username")||"null").subscribe({
-        next:(dp)=>{
-          dp.forEach(el => {
-            let nw =  new detallecursosdocentegradoseccion()
-            nw.detallecursoDocente = el;
-            this.SGrado.get(nw.detallecursoDocente.idcurso.idgrado).subscribe({next:(grad)=>{
-              nw.grado = grad
-            },complete:()=>{ 
-              lsecc.forEach((elsecc)=>{
-                if(nw.detallecursoDocente.idcurso.idgrado == elsecc.idgrado){
-                  nw.seccion = elsecc
-                }
-              });
-              this.listPrimaryMixed.push(nw);
-            }})
-            
-          });
-          console.log(dp)
-          this.listPrimary = dp   
-          
-        }
-      })
-
-      this.SDetalleCD.getDetailByNivelDocente("Secundaria",sessionStorage.getItem("username")||"null").subscribe({
-        next:(ds)=>{
-          ds.forEach(el => {
-            let nw =  new detallecursosdocentegradoseccion()
-            nw.detallecursoDocente = el;
-            this.SGrado.get(nw.detallecursoDocente.idcurso.idgrado).subscribe({next:(grad)=>{
-              nw.grado = grad
-            },complete:()=>{ 
-              lsecc.forEach((elsecc)=>{
-                if(nw.detallecursoDocente.idcurso.idgrado == elsecc.idgrado){
-                  nw.seccion = elsecc
-                }
-              });
-              this.listSecondaryMixed.push(nw);
-            }})
-            
-          });
-          console.log(ds)
-          this.listSecondary = ds
-        }
-      })
-    } })
-   
-    
-  
+    this.SDetalleCD.getDetailByiddocente(sessionStorage.getItem("id")||"null").subscribe({
+      next:(dp)=>{
+        this.listPrimary = dp.filter((ldet:DetalleCursoDocente)=>ldet.idseccion.idgrado.idnivel.nombre.toLowerCase()=="primaria");
+        this.listSecondary = dp.filter((ldet:DetalleCursoDocente)=>ldet.idseccion.idgrado.idnivel.nombre.toLowerCase()=="secundaria");
+        console.log(this.listPrimary)
+        console.log(this.listSecondary)
+      }
+    })
   }
 
+  openModal(idseccion:Number,idcurso:Number){
+    //this.router.navigate([`alumnosCurso/${idseccion}/${idcurso}`])
+  }
 }

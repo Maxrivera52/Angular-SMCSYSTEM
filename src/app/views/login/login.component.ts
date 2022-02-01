@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   clave:string="";
 
   ngOnInit(): void {
-
+    sessionStorage.clear();
   }
 
   login(){
@@ -37,33 +37,24 @@ export class LoginComponent implements OnInit {
   
     if (this.correo!=""&& this.clave!=""){
       this.service.loginUser(this.correo,this.clave).subscribe(res=>{
-        logres = res;
-        console.log(logres)
-        if(logres!=null){
-          this.rolservice.getById(res.idrol).subscribe({
-            next:(rol)=>{
-              if(rol.descripcion == "administrador"){
-                document.cookie = `username=ADMINISTRADOR`;
-                this.setData("Administrador principal",rol.descripcion);
-                window.location.href = "/home";
-              }else if(rol.descripcion == "docente"){
-                this.docenteService.getByUser(res.idusuario).subscribe({next:(prof)=>{
-                  this.setData(prof.nombre+" "+prof.apellido,rol.descripcion);
-                }});
-              }else if(rol.descripcion == "alumno"){
-                this.alumnoService.getByUser(res.idusuario).subscribe({
-                  next:(alu)=>{
-                    this.setData(alu.nombre +" "+ alu.apellido, rol.descripcion);
-                  }})
-              }
-
-              //
-              window.location.href = "/home";
-            }
-          });
-          //this.router.navigate(["/home"]);
-       
-          //this.router.navigate()
+        let usuario:Usuario = res;
+        if(usuario!=null){
+          if(usuario.idrol.descripcion == "administrador"){
+            document.cookie = `username=ADMINISTRADOR`;
+            this.setData("Administrador principal",usuario.idrol.descripcion,0);
+            window.location.href = "/home";
+          }else if(usuario.idrol.descripcion == "docente"){
+            this.docenteService.getByUser(res.idusuario).subscribe({next:(prof)=>{
+              this.setData(prof.nombre+" "+prof.apellido,usuario.idrol.descripcion,prof.idprofesor);
+            }});
+          }
+          /*else if(usuario.idrol.descripcion == "alumno"){
+            this.alumnoService.getByUser(res.idusuario).subscribe({
+              next:(alu)=>{
+                this.setData(alu.nombre +" "+ alu.apellido,usuario.idrol.descripcion,alu.);
+              }})
+          }*/
+          window.location.href = "/home";
         }else{
           swal({
             title: 'Usuario no encontrado',
@@ -82,10 +73,9 @@ export class LoginComponent implements OnInit {
       });
     } 
   }
-  setData(nombre: string, descripcion: string) {
-    document.cookie = `username=${nombre}`;
-    document.cookie = `rol=${descripcion}`;
+  setData(nombre: string, descripcion: string,id:number) {
     sessionStorage.setItem("rol",descripcion);
     sessionStorage.setItem("username",nombre);
+    sessionStorage.setItem("id",id.toString());
   }
 }

@@ -8,11 +8,6 @@ import { AnioescolarService } from 'src/app/services/anioescolar.service';
 
 declare var swal: any;
 
-class PeriodoAnio {
-  periodo: Periodocl = new Periodocl();
-  anio:Anioescolarcl = new Anioescolarcl();
-}
-
 @Component({
   selector: 'app-periodo',
   templateUrl: './periodo.component.html',
@@ -22,9 +17,8 @@ export class PeriodoComponent implements OnInit {
 
   listPeriodo: Periodocl[] = [];
   listAnio: Anioescolarcl[] = [];
-  listPeriodoAnio: PeriodoAnio[] = [];
   displayedColumns: string[] = ['idperiodo', 'nombre', 'fechainicio', 'fechacierre', 'anio', 'estado'];
-  dataSource = new MatTableDataSource(this.listPeriodoAnio);
+  dataSource = new MatTableDataSource(this.listPeriodo);
 
   @ViewChild(MatTable)
   table!: MatTable<any>;
@@ -42,8 +36,8 @@ export class PeriodoComponent implements OnInit {
 
   assignFilterPredicate(){
     this.dataSource.filterPredicate = (data, filter) => {
-      let dataStr = data.periodo.idperiodo +
-        data.periodo.nombre + data.periodo.fechainicio + data.periodo.fechacierre + data.anio.nombre;
+      let dataStr = data.idperiodo +
+        data.nombre + data.fechainicio + data.fechacierre + data.idanio.nombre;
       dataStr = dataStr.toLowerCase();
       console.log(dataStr);
       return dataStr.indexOf(filter) != -1;
@@ -59,23 +53,18 @@ export class PeriodoComponent implements OnInit {
   load(){
     this.listPeriodo = [];
     this.listAnio = [];
-    this.listPeriodoAnio= [];
     this.anioserv.getAll().subscribe({
       next: (anios)=>{
         this.listAnio = anios;
-        this.perserv.getAll().subscribe({
-          next: (periodos)=>{
-            periodos.forEach(el=>{
-              let perAnio = new PeriodoAnio();
-              perAnio.periodo = el;
-              perAnio.anio = this.listAnio.filter(x=>x.idanio == el.idanio)[0];
-              this.listPeriodoAnio.push(perAnio);
-            });
-            this.dataSource = new MatTableDataSource(this.listPeriodoAnio);
-            this.assignFilterPredicate();
-            this.table.renderRows();
-          }
-        });
+      
+      }
+    });
+    this.perserv.getAll().subscribe({
+      next: (periodos)=>{
+        this.listPeriodo = periodos
+        this.dataSource = new MatTableDataSource(this.listPeriodo);
+        this.assignFilterPredicate();
+        this.table.renderRows();
       }
     });
  
@@ -121,7 +110,7 @@ export class PeriodoComponent implements OnInit {
   isvalidewPeriodo(idanio:string,periodo:string, fechainicio:string, fechacierre:string){
     let newPeriodo = new Periodocl();
     newPeriodo.estado = '1',
-    newPeriodo.idanio = Number(idanio);
+    newPeriodo.idanio.idanio = Number(idanio);
     newPeriodo.nombre = periodo;
     newPeriodo.fechainicio = fechainicio;
     newPeriodo.fechacierre = fechacierre;
@@ -135,11 +124,11 @@ export class PeriodoComponent implements OnInit {
 
   }
 
-  clickRow(periodo:PeriodoAnio){
+  clickRow(periodo:Periodocl){
 
     let selectanio= "<select id='selectanio' class='form-control'><option value=''>Seleccione un año</option>";
     for(let anio of this.listAnio){
-      if(periodo.anio.idanio == anio.idanio)
+      if(periodo.idanio.idanio == anio.idanio)
       selectanio+=`<option value='${anio.idanio}' selected>${anio.nombre}</option>`;
       else selectanio+=`<option value='${anio.idanio}'>${anio.nombre}</option>`;
     }
@@ -149,9 +138,9 @@ export class PeriodoComponent implements OnInit {
       text: `
       <form>
         ${selectanio}
-        <input id="nombre" type="text" class="form-control" placeholder="Ej: 1er Bimestre" value="${periodo.periodo.nombre}" required/>
-        <input id="fechainicio" type="date" class="form-control" placeholder="Fecha de Inicio" value="${periodo.periodo.fechainicio}" required/>
-        <input id="fechacierre" type="date" class="form-control" placeholder="Fecha de Cierre" value="${periodo.periodo.fechacierre}" required/>
+        <input id="nombre" type="text" class="form-control" placeholder="Ej: 1er Bimestre" value="${periodo.nombre}" required/>
+        <input id="fechainicio" type="date" class="form-control" placeholder="Fecha de Inicio" value="${periodo.fechainicio}" required/>
+        <input id="fechacierre" type="date" class="form-control" placeholder="Fecha de Cierre" value="${periodo.fechacierre}" required/>
       </form>`,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -174,12 +163,12 @@ export class PeriodoComponent implements OnInit {
     }, () => { });
   }
 
-  updatePeriodo(anio:string,nom:string,fechainicio:string, fechacierre:string, periodo:PeriodoAnio){
-    periodo.periodo.idanio = Number(anio);
-    periodo.periodo.nombre = nom;
-    periodo.periodo.fechainicio = fechainicio;
-    periodo.periodo.fechacierre = fechacierre;
-    this.perserv.update(periodo.periodo).subscribe({
+  updatePeriodo(anio:string,nom:string,fechainicio:string, fechacierre:string, periodo:Periodocl){
+    periodo.idanio.idanio = Number(anio);
+    periodo.nombre = nom;
+    periodo.fechainicio = fechainicio;
+    periodo.fechacierre = fechacierre;
+    this.perserv.update(periodo).subscribe({
       next:(nper)=>{
         console.log(nper);
         swal("Actualización exitosa","Se actualizó satisfactoriamente","success");

@@ -29,6 +29,12 @@ export class SeccionService {
     return this.http.get<Seccioncl>(this.url + params);
   }
 
+  getByIdGrado(id: number): Observable<Seccioncl[]> {
+    const params = `/grado/${id}`;
+    return this.http.get<Seccioncl[]>(this.url + params);
+  }
+
+
   // MODIFICAR SECCION
   update(seccion: Seccioncl): Observable<Seccioncl> {
     const params = `/update`;

@@ -9,11 +9,6 @@ import { GradoService } from 'src/app/services/grado.service';
 
 declare var swal: any;
 
-class seccionGrado {
-  seccion:Seccioncl = new Seccioncl();
-  grado:Gradocl = new Gradocl();
-}
-
 @Component({
   selector: 'app-seccion',
   templateUrl: './seccion.component.html',
@@ -22,11 +17,10 @@ class seccionGrado {
 export class SeccionComponent implements OnInit {
 
   listSeccion: Seccioncl[] = [];
-  listSeccionGrade:seccionGrado[] = [];
   listgrades: Gradocl[] = [];
 
-  displayedColumns: string[] = ['idseccion', 'descripcion', 'nivel', 'grado', 'estado'];
-  dataSource = new MatTableDataSource(this.listSeccionGrade);
+  displayedColumns: string[] = ['idseccion', 'grado', 'descripcion','nivel',  'estado'];
+  dataSource = new MatTableDataSource(this.listSeccion);
 
 
   @ViewChild(MatTable)
@@ -39,7 +33,7 @@ export class SeccionComponent implements OnInit {
   // FILTRO DE BUSQUEDA
   assignFilterPredicate() {
     this.dataSource.filterPredicate = (data, filter) =>{
-      let dataStr = data.grado.descripcion + data.seccion.descripcion
+      let dataStr = data.descripcion + data.idgrado.descripcion
       dataStr = dataStr.toLowerCase();
       return dataStr.indexOf(filter) != -1;
     }
@@ -57,23 +51,17 @@ export class SeccionComponent implements OnInit {
   load(){
     this.listSeccion = [];
     this.listgrades = [];
-    this.listSeccionGrade = [];
     this.gserv.getAll().subscribe({
       next: (grades)=>{
         this.listgrades = grades;
-        this.secserv.getAll().subscribe({
-          next: (secc)=>{
-            secc.forEach(el=>{
-              let seccGrade = new seccionGrado();
-              seccGrade.seccion = el;
-              seccGrade.grado = this.listgrades.filter(x=>x.idgrado == el.idgrado)[0];
-              this.listSeccionGrade.push(seccGrade);
-            });
-            this.dataSource = new MatTableDataSource(this.listSeccionGrade);
-            this.assignFilterPredicate();
-            this.table.renderRows();
-          }
-        });
+      }
+    });
+    this.secserv.getAll().subscribe({
+      next: (secc)=>{
+        this.listSeccion = secc
+        this.dataSource = new MatTableDataSource(this.listSeccion);
+        this.assignFilterPredicate();
+        this.table.renderRows();
       }
     });
  
@@ -82,7 +70,7 @@ export class SeccionComponent implements OnInit {
   newSection(){
     let selectgrad= "<select id='selectgrad' class='form-control'><option value=''>Seleccione un grado</option>";
     for(let grad of this.listgrades){
-      selectgrad+=`<option value='${grad.idgrado}'>${grad.descripcion}</option>`;
+      selectgrad+=`<option value='${grad.idgrado}'>${grad.descripcion}&nbsp;-&nbsp;${grad.idnivel.nombre}</option>`;
     }
     selectgrad+="</select>"
     swal({
@@ -114,7 +102,7 @@ export class SeccionComponent implements OnInit {
   isvalidewSection(idgrado:string,seccion:string){
     let newSection = new Seccioncl();
     newSection.estado = '1',
-    newSection.idgrado = Number(idgrado);
+    newSection.idgrado.idgrado = Number(idgrado);
     newSection.descripcion = seccion;
     this.secserv.create(newSection).subscribe({
       next:(nsecc)=>{
@@ -123,16 +111,14 @@ export class SeccionComponent implements OnInit {
         this.load();
       }
     });
-
   }
 
-  openModal(seccion:seccionGrado){
-
+  openModal(seccion:Seccioncl){
     let selectgrad= "<select id='selectgrad' class='form-control'><option value=''>Seleccione un grado</option>";
     for(let grad of this.listgrades){
-      if(seccion.grado.idgrado == grad.idgrado)
-      selectgrad+=`<option value='${grad.idgrado}' selected>${grad.descripcion}</option>`;
-      else selectgrad+=`<option value='${grad.idgrado}'>${grad.descripcion}</option>`;
+      if(seccion.idgrado.idgrado == grad.idgrado)
+      selectgrad+=`<option value='${grad.idgrado}' selected>${grad.descripcion}&nbsp;-&nbsp;${grad.idnivel.nombre}</option>`;
+      else selectgrad+=`<option value='${grad.idgrado}'>${grad.descripcion}&nbsp;-&nbsp;${grad.idnivel.nombre}</option>`;
     }
     selectgrad+="</select>"
     swal({
@@ -140,7 +126,7 @@ export class SeccionComponent implements OnInit {
       text: `
       <form>
         ${selectgrad}
-        <input id="descripcion" type="text" class="form-control" placeholder="Ej: A12" value="${seccion.seccion.descripcion}" required/>
+        <input id="descripcion" type="text" class="form-control" placeholder="Ej: A12" value="${seccion.descripcion}" required/>
       </form>`,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -161,10 +147,10 @@ export class SeccionComponent implements OnInit {
     }, () => { });
   }
 
-  updateSection(grado:string,desc:string,seccion:seccionGrado){
-    seccion.seccion.idgrado = Number(grado);
-    seccion.seccion.descripcion = desc;
-    this.secserv.update(seccion.seccion).subscribe({
+  updateSection(grado:string,desc:string,seccion:Seccioncl){
+    seccion.idgrado.idgrado = Number(grado);
+    seccion.descripcion = desc;
+    this.secserv.update(seccion).subscribe({
       next:(nsecc)=>{
         console.log(nsecc);
         swal("Actualización exitosa","Se actualizó satisfactoriamente","success");

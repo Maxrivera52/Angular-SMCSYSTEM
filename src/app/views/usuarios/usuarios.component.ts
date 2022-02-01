@@ -5,13 +5,6 @@ import { Usuario } from 'src/app/models/usuario';
 import { SRolService } from 'src/app/services/srol.service';
 import { SUsuarioService } from 'src/app/services/susuario.service';
 
-class UsuarioRol {//extends Usuario {
-  // usuario:Usuario = new Usuario();
-  nombreRol:string = "";
-  usuario:Usuario= new Usuario();
-
-}
-
 declare var swal:any;
 
 @Component({
@@ -22,7 +15,6 @@ declare var swal:any;
 export class UsuariosComponent implements OnInit {
 
   listUsuario: Usuario[]=[];
-  listUsuarioRol:UsuarioRol[]=[];
   listRol:Rol[]=[];
   displayedColumns: string[]= ['id','correo','rol','estado'];
 
@@ -36,39 +28,22 @@ export class UsuariosComponent implements OnInit {
   }
 
   load(){
-    this.listUsuarioRol = [];
     this.listRol = [];
     this.listUsuario = [];
-    this.rserv.getAll().subscribe({
-      next:(e)=>{this.listRol = e},
-      error:()=>{console.error("Error al recuperar lista de roles")},
-      complete:()=>{
-        this.userv.getAll().subscribe({
-          next:(e)=>{
-            this.listUsuario = e;
-            if(this.listUsuario!=null && this.listRol!=null){
-              e.forEach(x=>{
-                let usrl:UsuarioRol = new UsuarioRol();
-                usrl.usuario = x;
-                usrl.nombreRol = this.listRol.filter(f=>f.idrol== x.idrol)[0].descripcion;
-                this.listUsuarioRol.push(usrl);
-              });
-              this.table.renderRows();
-            }
-          },
-          error:()=>{console.error("Error al recuperar lista de usuarios")},
-          complete:()=>{
-          }
-        });
-      }
+    this.userv.getAll().subscribe({
+      next:(e)=>{
+        this.listUsuario = e;
+        this.table.renderRows();
+      },
+      error:()=>{console.error("Error al recuperar lista de usuarios")},
     });
-  
+    this.rserv.getAll().subscribe(x=>{this.listRol = x});
   }
 
-  clickRow(usu:UsuarioRol){
+  clickRow(usu:Usuario){
     let options ="";
     for(let rol of this.listRol){
-      if(rol.idrol == usu.usuario.idrol){
+      if(rol.idrol == usu.idrol.idrol){
         options+=`<option value="${rol.idrol}" selected>Rol - ${rol.descripcion.charAt(0).toUpperCase()+rol.descripcion.slice(1)}</option>`;  
         continue;
       }
@@ -79,8 +54,8 @@ export class UsuariosComponent implements OnInit {
       text:`
       <form>
         <select id=""class="form-control" disabled>${options}</select>
-        <input type="text" id="correo" class="form-control" value="${usu.usuario.correo}" placeholder="Correo">
-        <input type="password" id="oldpass" class="form-control" value="${usu.usuario.clave}" placeholder="Contraseña">
+        <input type="text" id="correo" class="form-control" value="${usu.correo}" placeholder="Correo">
+        <input type="password" id="oldpass" class="form-control" value="${usu.clave}" placeholder="Contraseña">
         <input type="password" id="newpass" class="form-control" placeholder="Confirmar nueva contraseña">
       </form>`,
       showCancelButton: true,
@@ -107,14 +82,14 @@ export class UsuariosComponent implements OnInit {
           if(oldpass.value.length>0 && oldpass.value.length<8){
             swal({title:"Campo inválido",text:"Ingrese una contraseña con mínimo 8 caracteres",type:"error"});
             return;
-          }else if((newpass.value.length>0 && (oldpass.value != newpass.value))||((oldpass.value!=usu.usuario.clave)&&newpass.value=="")){
+          }else if((newpass.value.length>0 && (oldpass.value != newpass.value))||((oldpass.value!=usu.clave)&&newpass.value=="")){
             swal({title:"Campo inválido",text:"Ambas contraseñas deben ser iguales",type:"error"});
             return;
           }
-          usu.usuario.correo = correo.value;
-          usu.usuario.clave = oldpass.value;
+          usu.correo = correo.value;
+          usu.clave = oldpass.value;
 
-          this.userv.save(usu.usuario).subscribe({
+          this.userv.save(usu).subscribe({
             next:(ussv)=>{//console.log(ussv)
             },
             error:()=>{swal({title:"Error",text:"Ocurrió un error inesperado",type:"error"});},

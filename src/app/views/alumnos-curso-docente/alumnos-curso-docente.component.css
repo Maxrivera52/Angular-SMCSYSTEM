@@ -1,0 +1,33 @@
+.content-main{
+    width: 80%;
+    margin: 20px auto;
+}
+
+.div-table{
+    width: 80%;
+    margin: 20px auto;
+}
+
+.tbl{
+    width: 100%;
+}
+.headerModule{
+    margin-top: 30px;
+    padding: 25px 10px;
+}
+.headerModule > h2{
+    font-size:30px;
+}
+
+.rowTable:hover{
+    cursor: pointer;
+}
+
+::ng-deep .form-control-dialog{
+    width: 80%;
+    margin-left:10%;
+    text-align: end;
+}
+::ng-deep .form-container-form{
+    margin: 10px 0;
+}

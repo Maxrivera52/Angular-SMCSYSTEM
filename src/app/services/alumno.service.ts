@@ -29,6 +29,10 @@ export class AlumnoService {
     return this.http.get<Alumnocl>(this.url + '/' + dni);
   }
 
+  getBySeccionId(id:number):Observable<Alumnocl[]>{
+    return this.http.get<Alumnocl[]>(this.url+`/seccion/${id}`);
+  }
+
   // MODIFICAR ALUMNO
   update(alumno: Alumnocl): Observable<Alumnocl> {
     return this.http.put<Alumnocl>(this.url, alumno);

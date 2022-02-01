@@ -10,7 +10,7 @@ export class CursoService {
 
   private url: string = 'http://localhost:8070/rest_cursos';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // LISTAR CURSOS
   getAll(): Observable<Cursocl[]> {
@@ -23,6 +23,10 @@ export class CursoService {
   // BUSCAR CURSO
   get(idcurso: number): Observable<Cursocl> {
     return this.http.get<Cursocl>(this.url + '/' + idcurso);
+  }
+
+  getCourseByGrado(id: number): Observable<Cursocl[]> {
+    return this.http.get<Cursocl[]>(this.url + '/grado/' + id);
   }
 
   // MODIFICAR CURSO

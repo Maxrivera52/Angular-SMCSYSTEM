@@ -17,11 +17,17 @@ import { NivelComponent } from './views/nivel/nivel.component';
 import { PeriodoComponent } from './views/periodo/periodo.component';
 import { DetalleCursoDocenteComponent } from './views/detalle-curso-docente/detalle-curso-docente.component';
 import { CursosAsignadosDocenteComponent } from './views/cursos-asignados-docente/cursos-asignados-docente.component';
+import { AlumnosCursoDocenteComponent } from './views/alumnos-curso-docente/alumnos-curso-docente.component';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { RecoveryUserAccountComponent } from './views/recovery-user-account/recovery-user-account.component';
+import { DocenteGuard } from './guards/docente.guard';
+import { LogedGuard } from './guards/loged.guard';
 
 const routes: Routes = [
+  
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', canActivate:[LogedGuard],component: HomeComponent },
   { path: 'alumno', canActivate: [AdminGuard], component: AlumnoComponent },
   { path: 'usuarios', canActivate: [AdminGuard], component: UsuariosComponent },
   { path: 'profesor', canActivate: [AdminGuard], component: ProfesorComponent },
@@ -33,6 +39,11 @@ const routes: Routes = [
   { path: 'periodo', component: PeriodoComponent, canActivate: [HoraAccesoGuard,AdminGuard] },
   { path: 'detalleCursoDocente', component:DetalleCursoDocenteComponent },
   { path: 'misCursosDocente', component:CursosAsignadosDocenteComponent }
+  { path: 'detalleCursoDocente', canActivate: [AdminGuard],component:DetalleCursoDocenteComponent },
+  { path: 'misCursosDocente',canActivate:[DocenteGuard], component:CursosAsignadosDocenteComponent },
+  { path: 'alumnosCurso',canActivate:[DocenteGuard], component:AlumnosCursoDocenteComponent },
+  { path: 'recoveryUserAccount', component:RecoveryUserAccountComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,44 @@
+<div class="center-content">
+    <mat-stepper linear #stepper class=".stepper">
+        <mat-step [editable]="isEditable">
+            <form>
+                <ng-template matStepLabel>Correo Electrónico</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Correo Electrónico</mat-label>
+                    <input type="email" id="emailInput" matInput placeholder="myuseremail@gmail.com" autocomplete="off" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button (click)="goForward()" type="button">Siguiente</button>
+                 </div>
+            </form>
+        </mat-step>
+        <mat-step [editable]="isEditable">
+            <form>
+                <ng-template matStepLabel>Verificación de correo electrónico</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Código de verificación</mat-label>
+                    <input type="password" id="keycode" matInput placeholder="Ingrese código de 20 dígitos" autocomplete="off" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button (click)="goForward()" type="button">Siguiente</button>
+                 </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Reestablecer contraseña</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Nueva contraseña</mat-label>
+                <input type="password" id="password1" matInput placeholder="Ingrese su contraseña" autocomplete="off" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Confirme la nueva contraseña</mat-label>
+                <input type="password" id="password2" matInput placeholder="Ingrese su contraseña" autocomplete="off" required>
+            </mat-form-field>
+            <div>
+                <button mat-button (click)="goForward()" type="button">Completar</button>
+             </div>
+        </mat-step>
+    </mat-stepper>
+  
+</div>
