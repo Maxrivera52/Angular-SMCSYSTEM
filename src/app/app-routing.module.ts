@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'anio', canActivate: [AdminGuard], component: AnioescolarComponent },
   { path: 'nivel', canActivate: [AdminGuard], component: NivelComponent },
   { path: 'periodo', component: PeriodoComponent, canActivate: [HoraAccesoGuard,AdminGuard] },
-  { path: 'detalleCursoDocente', canActivate: [AdminGuard],component:DetalleCursoDocenteComponent },
+  { path: 'detalleCursoDocente', component:DetalleCursoDocenteComponent },
   { path: 'misCursosDocente', component:CursosAsignadosDocenteComponent }
 ];
 
