@@ -28,6 +28,11 @@ export class PeriodoService {
     return this.http.get<Periodocl[]>(this.url + '/fechaMaxima');
   }
 
+  getCurrentActivePeriode(): Observable<Periodocl> {
+    return this.http.get<Periodocl>(this.url + '/periodoActual');
+  }
+
+
   // MODIFICAR PERIODO
   update(periodo: Periodocl): Observable<Periodocl> {
     return this.http.put<Periodocl>(this.url, periodo);

@@ -8,11 +8,6 @@ import { CursoService } from 'src/app/services/curso.service';
 
 declare var swal: any;
 
-class CursoGra {
-  curso: Cursocl = new Cursocl();
-  grado:Gradocl = new Gradocl();
-}
-
 @Component({
   selector: 'app-curso',
   templateUrl: './curso.component.html',
@@ -22,9 +17,8 @@ export class CursoComponent implements OnInit {
 
   listCurso: Cursocl[] = [];
   listGrado: Gradocl[] = [];
-  listCursoGra: CursoGra[] = [];
-  displayedColumns: string[] = ['idcurso', 'descripcion', 'grado', 'estado'];
-  dataSource = new MatTableDataSource(this.listCursoGra);
+  displayedColumns: string[] = ['idcurso', 'descripcion', 'grado', 'nivel','estado'];
+  dataSource = new MatTableDataSource(this.listCurso);
 
   @ViewChild(MatTable)
   table!: MatTable<any>;
@@ -42,8 +36,8 @@ export class CursoComponent implements OnInit {
 
   assignFilterPredicate(){
     this.dataSource.filterPredicate = (data, filter) => {
-      let dataStr = data.curso.idcurso +
-        data.curso.descripcion + data.grado.descripcion;
+      let dataStr = data.idcurso +
+        data.descripcion + data.idgrado.descripcion;
       dataStr = dataStr.toLowerCase();
       console.log(dataStr);
       return dataStr.indexOf(filter) != -1;
@@ -59,23 +53,17 @@ export class CursoComponent implements OnInit {
   load(){
     this.listCurso = [];
     this.listGrado = [];
-    this.listCursoGra= [];
     this.graserv.getAll().subscribe({
       next: (grados)=>{
         this.listGrado = grados;
-        this.curserv.getAll().subscribe({
-          next: (cursos)=>{
-            cursos.forEach(el=>{
-              let curGra = new CursoGra();
-              curGra.curso = el;
-              curGra.grado = this.listGrado.filter(x=>x.idgrado == el.idgrado)[0];
-              this.listCursoGra.push(curGra);
-            });
-            this.dataSource = new MatTableDataSource(this.listCursoGra);
-            this.assignFilterPredicate();
-            this.table.renderRows();
-          }
-        });
+      }
+    });
+    this.curserv.getAll().subscribe({
+      next: (cursos)=>{
+        this.listCurso = cursos
+        this.dataSource = new MatTableDataSource(this.listCurso);
+        this.assignFilterPredicate();
+        this.table.renderRows();
       }
     });
  
@@ -85,7 +73,7 @@ export class CursoComponent implements OnInit {
   newCurso(){
     let selectgra= "<select id='selectgra' class='form-control'><option value=''>Seleccione un grado</option>";
     for(let gra of this.listGrado){
-      selectgra+=`<option value='${gra.idgrado}'>${gra.descripcion}</option>`;
+      selectgra+=`<option value='${gra.idgrado}'>${gra.descripcion}&nbsp;-&nbsp;${gra.idnivel.nombre}</option>`;
     }
     selectgra+="</select>"
     swal({
@@ -117,7 +105,7 @@ export class CursoComponent implements OnInit {
   isvalidewNivel(idgrado:string,curso:string){
     let newCurso = new Cursocl();
     newCurso.estado = '1',
-    newCurso.idgrado = Number(idgrado);
+    newCurso.idgrado.idgrado = Number(idgrado);
     newCurso.descripcion = curso;
     this.curserv.create(newCurso).subscribe({
       next:(nsecc)=>{
@@ -129,13 +117,13 @@ export class CursoComponent implements OnInit {
 
   }
 
-  clickRow(curso:CursoGra){
+  clickRow(curso:Cursocl){
 
     let selectgra= "<select id='selectgra' class='form-control'><option value=''>Seleccione un grado</option>";
     for(let gra of this.listGrado){
-      if(curso.grado.idgrado == gra.idgrado)
-      selectgra+=`<option value='${gra.idgrado}' selected>${gra.descripcion}</option>`;
-      else selectgra+=`<option value='${gra.idgrado}'>${gra.descripcion}</option>`;
+      if(curso.idgrado.idgrado == gra.idgrado)
+      selectgra+=`<option value='${gra.idgrado}' selected>${gra.descripcion}&nbsp;-&nbsp;${gra.idnivel.nombre}</option>`;
+      else selectgra+=`<option value='${gra.idgrado}'>${gra.descripcion}&nbsp;-&nbsp;${gra.idnivel.nombre}</option>`;
     }
     selectgra+="</select>"
     swal({
@@ -143,7 +131,7 @@ export class CursoComponent implements OnInit {
       text: `
       <form>
         ${selectgra}
-        <input id="descripcion" type="text" class="form-control" placeholder="Ej: Comunicación" value="${curso.curso.descripcion}" required/>
+        <input id="descripcion" type="text" class="form-control" placeholder="Ej: Comunicación" value="${curso.descripcion}" required/>
       </form>`,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -164,10 +152,10 @@ export class CursoComponent implements OnInit {
     }, () => { });
   }
 
-  updateCurso(grado:string,desc:string,curso:CursoGra){
-    curso.curso.idgrado = Number(grado);
-    curso.curso.descripcion = desc;
-    this.curserv.update(curso.curso).subscribe({
+  updateCurso(grado:string,desc:string,curso:Cursocl){
+    curso.idgrado.idgrado = Number(grado);
+    curso.descripcion = desc;
+    this.curserv.update(curso).subscribe({
       next:(ncur)=>{
         console.log(ncur);
         swal("Actualización exitosa","Se actualizó satisfactoriamente","success");

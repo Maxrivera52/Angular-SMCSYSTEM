@@ -1,6 +1,8 @@
+import { Nivelcl } from "./nivelcl";
+
 export class Gradocl {
     idgrado: number=0;
     descripcion: string="";
     estado: string="";
-    idnivel:number = 0;
+    idnivel:Nivelcl = new Nivelcl();
 }

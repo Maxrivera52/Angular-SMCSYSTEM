@@ -17,10 +17,10 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="container-card">
-                    <a class="card" *ngFor="let el of listPrimaryMixed" (click)="openModal(el.seccion.idseccion,el.detallecursoDocente.idcurso.idcurso)">
-                        <p><b>Curso:&nbsp;</b>{{el.detallecursoDocente.idcurso.descripcion}}</p>
-                        <p><b>Grado:&nbsp;</b>{{el.grado.descripcion}}</p>
-                        <p><b>Sección:&nbsp;</b>{{el.seccion.descripcion}}</p>
+                    <a class="card" *ngFor="let el of listPrimary" href="alumnosCurso?seccion={{el.idseccion.idseccion}}&curso={{el.idcurso.idcurso}}">
+                        <p class="title"><b>{{el.idseccion.idgrado.descripcion}}</b></p>
+                        <p class="seccion">Sección {{el.idseccion.descripcion}}</p>
+                        <p class="curso">{{el.idcurso.descripcion}}</p>
                     </a>
                 </div>
             </mat-expansion-panel>
@@ -34,15 +34,13 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="container-card">
-                    <a class="card" *ngFor="let el of listSecondaryMixed" (click)="openModal(el.seccion.idseccion,el.detallecursoDocente.idcurso.idcurso)">
-                        <p><b>Curso:&nbsp;</b>{{el.detallecursoDocente.idcurso.descripcion}}</p>
-                        <p><b>Grado:&nbsp;</b>{{el.grado.descripcion}}</p>
-                        <p><b>Sección:&nbsp;</b>{{el.seccion.descripcion}}</p>
+                    <a class="card" *ngFor="let el of listSecondary" href="alumnosCurso?seccion={{el.idseccion.idseccion}}&curso={{el.idcurso.idcurso}}">
+                        <p class="title"><b>{{el.idseccion.idgrado.descripcion}}</b></p>
+                        <p class="seccion">Sección {{el.idseccion.descripcion}}</p>
+                        <p class="curso">{{el.idcurso.descripcion}}</p>
                     </a>
                 </div>
             </mat-expansion-panel>
         </mat-accordion>
-
     </div>
-
 </section>

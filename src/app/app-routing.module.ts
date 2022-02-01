@@ -26,8 +26,8 @@ import { LogedGuard } from './guards/loged.guard';
 const routes: Routes = [
   
   { path: '', component: LoginComponent },
-  { path: 'login',canActivate:[LogedGuard], component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', canActivate:[LogedGuard],component: HomeComponent },
   { path: 'alumno', canActivate: [AdminGuard], component: AlumnoComponent },
   { path: 'usuarios', canActivate: [AdminGuard], component: UsuariosComponent },
   { path: 'profesor', canActivate: [AdminGuard], component: ProfesorComponent },
@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'periodo', component: PeriodoComponent, canActivate: [HoraAccesoGuard,AdminGuard] },
   { path: 'detalleCursoDocente', canActivate: [AdminGuard],component:DetalleCursoDocenteComponent },
   { path: 'misCursosDocente',canActivate:[DocenteGuard], component:CursosAsignadosDocenteComponent },
-  { path: 'alumnosCurso/:idseccion/:idcurso',canActivate:[DocenteGuard], component:AlumnosCursoDocenteComponent },
+  { path: 'alumnosCurso',canActivate:[DocenteGuard], component:AlumnosCursoDocenteComponent },
   { path: 'recoveryUserAccount', component:RecoveryUserAccountComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

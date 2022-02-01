@@ -19,30 +19,30 @@
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 tbl">
             <ng-container matColumnDef="idperiodo">
                 <th mat-header-cell *matHeaderCellDef="">ID</th>
-                <td mat-cell *matCellDef="let per">{{per.periodo.idperiodo}}</td>
+                <td mat-cell *matCellDef="let per">{{per.idperiodo}}</td>
             </ng-container>
             <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef>Periodo</th>
-                <td mat-cell *matCellDef="let per">{{per.periodo.nombre}}</td>
+                <td mat-cell *matCellDef="let per">{{per.nombre}}</td>
             </ng-container>
             <ng-container matColumnDef="fechainicio">
                 <th mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
-                <td mat-cell *matCellDef="let per">{{per.periodo.fechainicio}}</td>
+                <td mat-cell *matCellDef="let per">{{per.fechainicio}}</td>
             </ng-container>
             <ng-container matColumnDef="fechacierre">
                 <th mat-header-cell *matHeaderCellDef>Fecha de Cierre</th>
-                <td mat-cell *matCellDef="let per">{{per.periodo.fechacierre}}</td>
+                <td mat-cell *matCellDef="let per">{{per.fechacierre}}</td>
             </ng-container>
 
             <ng-container matColumnDef="anio">
                 <th mat-header-cell *matHeaderCellDef>Año</th>
-                <td mat-cell *matCellDef="let per">{{per.anio.nombre}}</td>
+                <td mat-cell *matCellDef="let per">{{per.idanio.nombre}}</td>
             </ng-container>
 
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef>ESTADO</th>
                 <td mat-cell *matCellDef="let per">
-                    <div *ngIf="per.periodo.estado==1; else desh"><span
+                    <div *ngIf="per.estado==1; else desh"><span
                             class="badge badge-success">Activo</span>
                     </div>
                     <ng-template #desh>Inactivo</ng-template>

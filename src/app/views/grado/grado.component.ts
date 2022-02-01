@@ -8,10 +8,6 @@ import { GradoService } from 'src/app/services/grado.service';
 
 declare var swal: any;
 
-class GradoNiv {
-  grado: Gradocl = new Gradocl();
-  nivel:Nivelcl = new Nivelcl();
-}
 @Component({
   selector: 'app-grado',
   templateUrl: './grado.component.html',
@@ -21,9 +17,8 @@ export class GradoComponent implements OnInit {
 
   listGrado: Gradocl[] = [];
   listNivel: Nivelcl[] = [];
-  listGradoNiv: GradoNiv[] = [];
   displayedColumns: string[] = ['idgrado', 'descripcion', 'nivel', 'estado'];
-  dataSource = new MatTableDataSource(this.listGradoNiv);
+  dataSource = new MatTableDataSource(this.listGrado);
 
   @ViewChild(MatTable)
   table!: MatTable<any>;
@@ -41,8 +36,8 @@ export class GradoComponent implements OnInit {
 
   assignFilterPredicate(){
     this.dataSource.filterPredicate = (data, filter) => {
-      let dataStr = data.grado.idgrado +
-        data.grado.descripcion + data.nivel.nombre;
+      let dataStr = data.idgrado +
+        data.descripcion + data.idnivel.nombre;
       dataStr = dataStr.toLowerCase();
       console.log(dataStr);
       return dataStr.indexOf(filter) != -1;
@@ -58,26 +53,19 @@ export class GradoComponent implements OnInit {
   load(){
     this.listGrado = [];
     this.listNivel = [];
-    this.listGradoNiv = [];
     this.nivserv.getAll().subscribe({
       next: (niveles)=>{
         this.listNivel = niveles;
-        this.gradoserv.getAll().subscribe({
-          next: (grades)=>{
-            grades.forEach(el=>{
-              let gradNiv = new GradoNiv();
-              gradNiv.grado = el;
-              gradNiv.nivel = this.listNivel.filter(x=>x.idnivel == el.idnivel)[0];
-              this.listGradoNiv.push(gradNiv);
-            });
-            this.dataSource = new MatTableDataSource(this.listGradoNiv);
-            this.assignFilterPredicate();
-            this.table.renderRows();
-          }
-        });
       }
     });
- 
+    this.gradoserv.getAll().subscribe({
+      next: (grades)=>{
+        this.listGrado = grades;
+        this.dataSource = new MatTableDataSource(this.listGrado);
+        this.assignFilterPredicate();
+        this.table.renderRows();
+      }
+    });
   }
 
   newGrado(){
@@ -115,7 +103,7 @@ export class GradoComponent implements OnInit {
   isvalidewNivel(idnivel:string,grado:string){
     let newGrado = new Gradocl();
     newGrado.estado = '1',
-    newGrado.idnivel = Number(idnivel);
+    newGrado.idnivel.idnivel = Number(idnivel);
     newGrado.descripcion = grado;
     this.gradoserv.create(newGrado).subscribe({
       next:(nsecc)=>{
@@ -128,11 +116,11 @@ export class GradoComponent implements OnInit {
   }
 
 
-  clickRow(grado:GradoNiv){
+  clickRow(grado:Gradocl){
 
     let selectniv= "<select id='selectniv' class='form-control'><option value=''>Seleccione un nivel</option>";
     for(let niv of this.listNivel){
-      if(grado.nivel.idnivel == niv.idnivel)
+      if(grado.idnivel.idnivel == niv.idnivel)
       selectniv+=`<option value='${niv.idnivel}' selected>${niv.nombre}</option>`;
       else selectniv+=`<option value='${niv.idnivel}'>${niv.nombre}</option>`;
     }
@@ -142,7 +130,7 @@ export class GradoComponent implements OnInit {
       text: `
       <form>
         ${selectniv}
-        <input id="descripcion" type="text" class="form-control" placeholder="Ej: Primero" value="${grado.grado.descripcion}" required/>
+        <input id="descripcion" type="text" class="form-control" placeholder="Ej: Primero" value="${grado.descripcion}" required/>
       </form>`,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -163,10 +151,10 @@ export class GradoComponent implements OnInit {
     }, () => { });
   }
 
-  updateGrado(nivel:string,desc:string,grado:GradoNiv){
-    grado.grado.idnivel = Number(nivel);
-    grado.grado.descripcion = desc;
-    this.gradoserv.update(grado.grado).subscribe({
+  updateGrado(nivel:string,desc:string,grado:Gradocl){
+    grado.idnivel.idnivel = Number(nivel);
+    grado.descripcion = desc;
+    this.gradoserv.update(grado).subscribe({
       next:(nsecc)=>{
         console.log(nsecc);
         swal("Actualización exitosa","Se actualizó satisfactoriamente","success");

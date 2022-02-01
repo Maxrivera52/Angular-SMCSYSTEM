@@ -1,13 +1,14 @@
-import { Alumnocl } from "./alumnocl";
 import { Cursocl } from "./cursocl";
 import { Periodocl } from "./periodocl";
 
 export class Calificacion {
-    idcal:number = 0;
-    fechacomplcal=null;
-    observacioncal="";
-    estado="1";
+    idcalificacion:number = 0;
     idcurso:Cursocl = new Cursocl();
-    idalumno:Alumnocl = new Alumnocl();
     idperiodo:Periodocl = new Periodocl();
+    tipo:string = "";
+    fecha_asignacion:string="";
+    fecha_entrega="";
+    titulo=""
+    descripcion=""
+    estado="1";
 }

@@ -21,8 +21,8 @@ export class SDetalleCursoDocentesService {
     return this.http.get<DetalleCursoDocente>(this.url+params);
   }
 
-  getDetailByNivelDocente(nivel:string,docente:string):Observable<DetalleCursoDocente[]>{
-    const params = `/querydocente/${nivel}/${docente}`
+  getDetailByiddocente(id:string):Observable<DetalleCursoDocente[]>{
+    const params = `/querydocente/${id}`
     return this.http.get<DetalleCursoDocente[]>(this.url+params);
   }
 

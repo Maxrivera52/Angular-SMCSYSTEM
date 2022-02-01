@@ -2,10 +2,17 @@
 <mat-dialog-content class="mat-typography">
   <div>
     <mat-form-field class="select-list">
+      <mat-label>Grado</mat-label>
+      <mat-select  [(ngModel)]="idgrado">
+        <mat-option [value]="0">Seleccione un grado</mat-option>
+        <mat-option *ngFor="let it of data.listGrados" (click)="getCourseByGrado(it.idgrado)" [value]="it.idgrado">{{it.descripcion}} - {{it.idnivel.nombre}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="select-list">
       <mat-label>Curso</mat-label>
       <mat-select  [(ngModel)]="data.detailCursoDocente.idcurso.idcurso">
-        <mat-option [value]="0">Seleccione una opción</mat-option>
-        <mat-option *ngFor="let it of data.listCursos" [value]="it.idcurso">{{it.descripcion}}</mat-option>
+        <mat-option [value]="0">Seleccione un curso</mat-option>
+        <mat-option *ngFor="let it of listCursos" [value]="it.idcurso">{{it.descripcion}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="select-list">
@@ -13,6 +20,13 @@
       <mat-select [(ngModel)]="data.detailCursoDocente.idprofesor.idprofesor">
         <mat-option [value]="0">Seleccione una opción</mat-option>
         <mat-option *ngFor="let it of data.listDocentes" [value]="it.idprofesor">{{(it.nombre+" "+it.apellido)}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="select-list">
+      <mat-label>Seccion</mat-label>
+      <mat-select [(ngModel)]="data.detailCursoDocente.idseccion.idseccion">
+        <mat-option [value]="0">Seleccione una sección</mat-option>
+        <mat-option *ngFor="let it of listSecciones" [value]="it.idseccion">{{it.descripcion}}</mat-option>
       </mat-select>
     </mat-form-field>
     <div class="date-range">

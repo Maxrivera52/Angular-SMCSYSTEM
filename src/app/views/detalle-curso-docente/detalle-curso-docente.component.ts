@@ -9,6 +9,10 @@ import { PeriodoService } from 'src/app/services/periodo.service';
 import { SDetalleCursoDocentesService } from 'src/app/services/s-detalle-curso-docentes.service';
 import { SprofesorService } from 'src/app/services/sprofesor.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Gradocl } from 'src/app/models/gradocl';
+import { GradoService } from 'src/app/services/grado.service';
+import { Seccioncl } from 'src/app/models/seccioncl';
+import { SeccionService } from 'src/app/services/seccion.service';
 
 declare var swal:any;
 
@@ -16,6 +20,7 @@ export interface DialogData {
   listCursos:Cursocl[]
   listDocentes:Profesor[]
   detailCursoDocente:DetalleCursoDocente
+  listGrados:Gradocl[]
 }
 
 @Component({
@@ -27,7 +32,8 @@ export class DetalleCursoDocenteComponent implements OnInit {
 
   constructor(public dialog:MatDialog,
     private sDetalleCD:SDetalleCursoDocentesService,
-    private sCurso:CursoService
+    private sCurso:CursoService,
+    private sGrado:GradoService
     ,private sProfesor:SprofesorService) { }
 
   @ViewChild(MatTable)
@@ -37,9 +43,10 @@ export class DetalleCursoDocenteComponent implements OnInit {
   listDetalleCursoDocente:DetalleCursoDocente[] = [];
   listProfesores:Profesor[] = [];
   listCursos:Cursocl[] = [];
+  listGrados:Gradocl[] = [];
   dataSource = new MatTableDataSource(this.listDetalleCursoDocente);
 
-  displayedColumns = ['identificador','curso','profesor','inicio','final'];
+  displayedColumns = ['identificador','seccion','curso','profesor','inicio','final'];
 
   ngOnInit(): void {
     this.load()
@@ -49,12 +56,17 @@ export class DetalleCursoDocenteComponent implements OnInit {
     this.sDetalleCD.getAll().subscribe({
       next:(ldcd)=>{
         this.listDetalleCursoDocente = ldcd;
+        console.log(ldcd)
         this.refreshtable();
       }
     });
 
     this.sProfesor.getAll().subscribe({next:(prof)=>this.listProfesores = prof});
     this.sCurso.getAll().subscribe({next:(cursos)=>this.listCursos = cursos})
+    this.sGrado.getAll().subscribe(grados=>{
+      this.listGrados=grados
+      console.log(this.listGrados)
+    });
   }
 
   refreshtable(){
@@ -85,7 +97,8 @@ export class DetalleCursoDocenteComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogDetalleCursoDocente,{ 
       data:{ listCursos: this.listCursos,
         listDocentes:this.listProfesores,
-        detailCursoDocente:new DetalleCursoDocente()
+        detailCursoDocente:new DetalleCursoDocente(),
+        listGrados:this.listGrados
       } });
     dialogRef.afterClosed().subscribe(res=>this.load())
 
@@ -101,7 +114,8 @@ export class DetalleCursoDocenteComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DialogDetalleCursoDocente,{ data:{ listCursos:this.listCursos,
       listDocentes:this.listProfesores,
-      detailCursoDocente:row
+      detailCursoDocente:row,
+      listGrados:this.listGrados
     } })
 
     dialogRef.afterClosed().subscribe(res=>this.load())
@@ -116,14 +130,24 @@ export class DetalleCursoDocenteComponent implements OnInit {
 export class DialogDetalleCursoDocente{
   startdate:any = null;
   enddate:any = null;
-  constructor(@Inject(MAT_DIALOG_DATA) public data:DialogData,private sDetalleCD:SDetalleCursoDocentesService
-    , private dialogRef:MatDialogRef<DialogDetalleCursoDocente>){ 
+  idgrado:number = 0;
+  listCursos:Cursocl[]=[];
+  listSecciones:Seccioncl[]=[]
+  constructor(@Inject(MAT_DIALOG_DATA) public data:DialogData,private sDetalleCD:SDetalleCursoDocentesService,
+     private sCurso:CursoService,
+     private sSeccion:SeccionService, 
+     private dialogRef:MatDialogRef<DialogDetalleCursoDocente>){ 
       if(data.detailCursoDocente.fechainicio != ""){
 
         this.startdate = new Date(data.detailCursoDocente.fechainicio)
         this.enddate = new Date(data.detailCursoDocente.fechafinal)
       }
   }
+  getCourseByGrado(id:number){
+    this.sCurso.getCourseByGrado(id).subscribe(cursos=>this.listCursos=cursos)
+    this.sSeccion.getByIdGrado(id).subscribe(secc=>this.listSecciones = secc)
+  }
+
 
   submit(){
     const startdateformat = new Date(this.startdate)
@@ -134,13 +158,11 @@ export class DialogDetalleCursoDocente{
     detallecursodocente.fechafinal = enddateformat.getFullYear()+"/"+(enddateformat.getMonth()+1)+"/"+enddateformat.getDate();
     console.log(detallecursodocente)
     const validations = this.validateForm(detallecursodocente);
-
     if(validations){
       this.sDetalleCD.save(detallecursodocente).subscribe({
         next:(det)=>{swal("Guardado","Se registró con éxito","success");this.dialogRef.close()}
       });
-    }
-    
+    } 
   }
 
   validateForm(detallecursodocente:DetalleCursoDocente):Boolean{

@@ -1,3 +1,8 @@
+.content-main{
+    width: 80%;
+    margin: 20px auto;
+}
+
 .div-table{
     width: 80%;
     margin: 20px auto;
@@ -17,14 +22,6 @@
 .rowTable:hover{
     cursor: pointer;
 }
-.mtbutton{
-    margin-left: 90%;
-}
-
-::ng-deep .mat-form-field,.form-control-dialog{
-    width: 80%;
-    margin-left:10%;
-}
 
 ::ng-deep .form-control-dialog{
     width: 80%;
@@ -33,8 +30,4 @@
 }
 ::ng-deep .form-container-form{
     margin: 10px 0;
-}
-
-::ng-deep .mat-save-button{
-    width: 15%;
 }

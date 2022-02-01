@@ -38,28 +38,23 @@ export class LoginComponent implements OnInit {
     if (this.correo!=""&& this.clave!=""){
       this.service.loginUser(this.correo,this.clave).subscribe(res=>{
         let usuario:Usuario = res;
-        console.log(logres)
         if(usuario!=null){
           if(usuario.idrol.descripcion == "administrador"){
             document.cookie = `username=ADMINISTRADOR`;
-            this.setData("Administrador principal",usuario.idrol.descripcion);
+            this.setData("Administrador principal",usuario.idrol.descripcion,0);
             window.location.href = "/home";
           }else if(usuario.idrol.descripcion == "docente"){
             this.docenteService.getByUser(res.idusuario).subscribe({next:(prof)=>{
-              this.setData(prof.nombre+" "+prof.apellido,usuario.idrol.descripcion);
+              this.setData(prof.nombre+" "+prof.apellido,usuario.idrol.descripcion,prof.idprofesor);
             }});
-          }else if(usuario.idrol.descripcion == "alumno"){
+          }
+          /*else if(usuario.idrol.descripcion == "alumno"){
             this.alumnoService.getByUser(res.idusuario).subscribe({
               next:(alu)=>{
-                this.setData(alu.nombre +" "+ alu.apellido,usuario.idrol.descripcion);
+                this.setData(alu.nombre +" "+ alu.apellido,usuario.idrol.descripcion,alu.);
               }})
-          }
-
-          //
+          }*/
           window.location.href = "/home";
-          //this.router.navigate(["/home"]);
-       
-          //this.router.navigate()
         }else{
           swal({
             title: 'Usuario no encontrado',
@@ -78,10 +73,9 @@ export class LoginComponent implements OnInit {
       });
     } 
   }
-  setData(nombre: string, descripcion: string) {
-    document.cookie = `username=${nombre}`;
-    document.cookie = `rol=${descripcion}`;
+  setData(nombre: string, descripcion: string,id:number) {
     sessionStorage.setItem("rol",descripcion);
     sessionStorage.setItem("username",nombre);
+    sessionStorage.setItem("id",id.toString());
   }
 }
