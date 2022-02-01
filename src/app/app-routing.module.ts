@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'nivel', canActivate: [AdminGuard], component: NivelComponent },
   { path: 'periodo', component: PeriodoComponent, canActivate: [HoraAccesoGuard,AdminGuard] },
   { path: 'detalleCursoDocente', component:DetalleCursoDocenteComponent },
-  { path: 'misCursosDocente', component:CursosAsignadosDocenteComponent }
+  { path: 'misCursosDocente', component:CursosAsignadosDocenteComponent },
   { path: 'detalleCursoDocente', canActivate: [AdminGuard],component:DetalleCursoDocenteComponent },
   { path: 'misCursosDocente',canActivate:[DocenteGuard], component:CursosAsignadosDocenteComponent },
   { path: 'alumnosCurso',canActivate:[DocenteGuard], component:AlumnosCursoDocenteComponent },
